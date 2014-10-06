@@ -3,10 +3,8 @@ var recAnswer=0;
 var checked="";
 var userName="";
 var title="";
-var JSON = {
-	"questions": [], 
-	"title":""};
-var questions=[];
+var JSON;
+var questions;
 
 
 
