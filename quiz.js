@@ -14,6 +14,7 @@ jQuery(document).ready(function () {
         generateNamePage();//generate name page on page load
         questions=JSON.questions;
         title=JSON.title;
+        $("#numCorrect").text(title);
 });
 
 
