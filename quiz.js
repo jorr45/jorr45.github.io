@@ -12,7 +12,8 @@ jQuery(document).ready(function () {
 		JSON = result;
 	})
         generateNamePage();//generate name page on page load
-                      
+        questions=JSON.questions;
+        title=JSON.title;
 });
 
 
