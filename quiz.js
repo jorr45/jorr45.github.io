@@ -3,15 +3,16 @@ var recAnswer=0;
 var checked="";
 var userName="";
 var title="";
-var JSON = {"questions": [], "title":""};
+var JSON = {
+	"questions": [], 
+	"title":""};
 var questions=[];
 
 
 
 jQuery(document).ready(function () {
-	$.getJSON(quiz.json, response{
-		JSON = response;
-	});
+	$.getJSON(quiz.json, response);
+	JSON = response;
 	questions=JSON.questions;
 	title=JSON.title;
 	generateNamePage();//generate name page on page load
