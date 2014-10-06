@@ -72,7 +72,8 @@ jQuery(document).ready(function () {
        $.getJSON("quiz.json", function(results){
                JSON = results;
        });
-                      
+        questions=JSON.questions;
+        title=JSON.title;
 });
 
 
