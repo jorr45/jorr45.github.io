@@ -4,27 +4,18 @@ var checked="";
 var userName="";
 var questions=[];
 
- function loadJSON(callback) {   
-
-    	questions = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-	xobj.open('GET', 'https://rawgit.com/jorr45/SCQuiz/master/quiz.json', true); // Replace 'my_data' with the path to your file
-	xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
- }
-loadJSON(function(response) {
-	questions = JSON.parse(response);
-}
-
 
 jQuery(document).ready(function () {
 
-   
+    $.ajax({ 
+    type: 'GET', 
+    url: 'quiz.json', 
+    data: { get_param: 'value' }, 
+    dataType: 'json',
+    done: function (data) { 
+        questions=data;
+    }
+});
        generateNamePage();//generate name page on page load
                       
 });
