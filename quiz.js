@@ -76,6 +76,7 @@ jQuery(document).ready(function () {
        });
         questions=JSON.questions;
         title=JSON.title;
+        $("#numCorrect").text(title);
 });
 
 
