@@ -71,7 +71,7 @@ jQuery(document).ready(function () {
        generateNamePage();//generate name page on page load
        $.getJSON("quiz.json", function(results){
                JSON = results;
-       }
+       });
                       
 });
 
