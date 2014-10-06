@@ -5,6 +5,7 @@
         <script src="jquery-1.11.1.js"></script>        
 <script>
     var questions;
+jQuery(document).ready(function () {
     $.ajax({ 
     type: 'GET', 
     url: 'https://rawgit.com/jorr45/SCQuiz/master/quiz.json', 
@@ -13,6 +14,7 @@
     done: function (data) { 
         questions=data;
     }
+});
 });
 </script>
 

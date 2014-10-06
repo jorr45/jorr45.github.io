@@ -2,15 +2,6 @@ var questionNumber = -1;
 var recAnswer=0;
 var checked="";
 var userName="";
-var questions;
-
- $.getJSON('quiz.json', function(response){
-       questions= response;
-       alert(JSON.property);
- })
- .success(function() { alert("second success"); })
- .error(function() { alert("error"); })
- .complete(function() { alert("complete"); });
 
 
 jQuery(document).ready(function () {
