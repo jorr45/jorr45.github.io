@@ -3,20 +3,7 @@
     
     <head>
         <script src="jquery-1.11.1.js"></script>        
-<script>
-    var questions;
-jQuery(document).ready(function () {
-    $.ajax({ 
-    type: 'GET', 
-    url: 'https://rawgit.com/jorr45/SCQuiz/master/quiz.json', 
-    data: { get_param: 'value' }, 
-    dataType: 'json',
-    done: function (data) { 
-        questions=data;
-    }
-});
-});
-</script>
+
 
         <script src="quiz.js"></script>
         <meta charset="utf-8">
