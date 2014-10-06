@@ -24,15 +24,7 @@ loadJSON(function(response) {
 
 jQuery(document).ready(function () {
 
-    $.ajax({ 
-    type: 'GET', 
-    url: 'https://rawgit.com/jorr45/SCQuiz/master/quiz.json', 
-    data: { get_param: 'value' }, 
-    dataType: 'json',
-    done: function (data) { 
-        questions=data;
-    }
-});
+   
        generateNamePage();//generate name page on page load
                       
 });
