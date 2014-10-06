@@ -2,14 +2,16 @@ var questionNumber = -1;
 var recAnswer=0;
 var checked="";
 var userName="";
-var questions;
+var questions=[];
 
  $.ajax({
       url: "quiz.json",
       dataType: "json",
       success: function(data) {
-            questions=jQuery.parseJSON(data);
-		alert("Success");
+            var parsed=jQuery.parseJSON(data);
+	    for(var x in parsed){
+  questions.push(parsed[x]);
+}
       }
 });
 
