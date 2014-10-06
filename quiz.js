@@ -8,7 +8,7 @@ var JSON = {0};
 
 
 jQuery(document).ready(function () {
-	.getJSON("quiz.json", function(result){
+	$.getJSON("quiz.json", function(result){
 		JSON = result;
 	})
         generateNamePage();//generate name page on page load
