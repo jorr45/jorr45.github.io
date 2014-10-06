@@ -2,12 +2,12 @@ var questionNumber = -1;
 var recAnswer=0;
 var checked="";
 var userName="";
+var questions;
 
 
 
 jQuery(document).ready(function () {
-    var questions;
-jQuery(document).ready(function () {
+
     $.ajax({ 
     type: 'GET', 
     url: 'https://rawgit.com/jorr45/SCQuiz/master/quiz.json', 
@@ -16,7 +16,6 @@ jQuery(document).ready(function () {
     done: function (data) { 
         questions=data;
     }
-});
 });
        generateNamePage();//generate name page on page load
                       
