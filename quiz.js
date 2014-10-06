@@ -2,21 +2,19 @@ var questionNumber = -1;
 var recAnswer=0;
 var checked="";
 var userName="";
-var questions=[];
+var questions;
 
 
 jQuery(document).ready(function () {
 
-    $.ajax({ 
-    type: 'GET', 
-    url: 'quiz.json', 
-    data: { get_param: 'value' }, 
-    dataType: 'json',
-    done: function (data) { 
-        questions=data;
-    }
-});
-       generateNamePage();//generate name page on page load
+ $.getJSON('quiz.json', function(response){
+       questions= response;
+       alert(JSON.property);
+ })
+ .success(function() { alert("second success"); })
+ .error(function() { alert("error"); })
+ .complete(function() { alert("complete"); });    
+generateNamePage();//generate name page on page load
                       
 });
 
