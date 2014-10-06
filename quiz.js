@@ -4,17 +4,18 @@ var checked="";
 var userName="";
 var questions;
 
-
-jQuery(document).ready(function () {
-
  $.getJSON('quiz.json', function(response){
        questions= response;
        alert(JSON.property);
  })
  .success(function() { alert("second success"); })
  .error(function() { alert("error"); })
- .complete(function() { alert("complete"); });    
-generateNamePage();//generate name page on page load
+ .complete(function() { alert("complete"); }); 
+
+jQuery(document).ready(function () {
+
+   
+	generateNamePage();//generate name page on page load
                       
 });
 
