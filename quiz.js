@@ -9,6 +9,7 @@ var questions;
       dataType: "json",
       success: function(data) {
             questions=jQuery.parseJSON(data);
+		alert("Success");
       }
 });
 
