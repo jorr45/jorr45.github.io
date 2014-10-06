@@ -2,19 +2,16 @@ var questionNumber = -1;
 var recAnswer=0;
 var checked="";
 var userName="";
-var title="";
-var JSON;
-var questions;
-
+var questions = [0];
+var title = " ";//json
+var JSON = {0};
 
 
 jQuery(document).ready(function () {
-	$.getJSON(quiz.json, response(){
-		JSON = response;
-	});
-	questions=JSON.questions;
-	title=JSON.title;
-	generateNamePage();//generate name page on page load
+	.getJSON("quiz.json", function(result){
+		JSON = result;
+	})
+        generateNamePage();//generate name page on page load
                       
 });
 
