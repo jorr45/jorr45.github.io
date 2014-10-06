@@ -3,6 +3,7 @@ var recAnswer=0;
 var checked="";
 var userName="";
 var JSON;
+var questions;
 /*var questions = [{//list of questions, answers, correct answer, user's answer
         "question": "Which of the following U.S. Supreme Court decisions legalized abortion in all 50 states?",
         "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
