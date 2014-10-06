@@ -75,11 +75,10 @@ var title="";
 
 
 jQuery(document).ready(function () {
-        alert("HI");
        generateNamePage();//generate name page on page load
        $.getJSON("quiz.json", function(results){
                JSON = results;
-               alert (JSON);
+               console.log(JSON.title);
                
        });
         questions=JSON.questions;
