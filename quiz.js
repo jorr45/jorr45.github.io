@@ -8,11 +8,10 @@ var questions=[];
       url: "quiz.json",
       dataType: "json",
       success: function(data) {
-            var parsed=jQuery.parseJSON(data);
-	    for(var x in parsed){
-  questions.push(parsed[x]);
+            var questions=JSON.parse(data);
+	    
 }
-      }
+      
 });
 
 
