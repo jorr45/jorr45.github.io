@@ -4,13 +4,14 @@ var checked="";
 var userName="";
 var questions;
 
- $.getJSON('quiz.json', function(response){
-       questions= response;
-       alert(JSON.property);
- })
- .success(function() { alert("second success"); })
- .error(function() { alert("error"); })
- .complete(function() { alert("complete"); }); 
+ $.ajax({
+      url: "quiz.json",
+      dataType: "json",
+      success: function(data) {
+            questions=jQuery.parseJSON(data);
+      }
+});
+
 
 jQuery(document).ready(function () {
 
