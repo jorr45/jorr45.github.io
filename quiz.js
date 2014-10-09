@@ -14,7 +14,7 @@ var title="A";
 jQuery(document).ready(function () {
        generateNamePage();//generate name page on page load
        $.getJSON("quiz.json", function(results){
-               alert(results);
+               alert("A"+results);
                JSON = results;
                console.log(JSON.title);
                questions=JSON.questions;
