@@ -12,7 +12,7 @@ var questions=[{
 }];
 var title="A";
 
-jQuery(document).ready(function () {
+//jQuery(document).ready(function () {
          JSON2=$.getJSON("quiz.json", function( json ) {
   console.log( "JSON Data: ");
  })
@@ -35,7 +35,7 @@ jQuery(document).ready(function () {
        generateNamePage();//generate name page on page load
        
         
-});
+//});
 
 
 function generateQ() {//generates next question
