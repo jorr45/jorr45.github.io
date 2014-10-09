@@ -90,7 +90,7 @@ jQuery(document).ready(function () {
 function generateQ() {//generates next question
     var inputs ='';
     var j=0;
-    do  {
+    while(j<questions[questionNumber].answers.length){
         if (questions[questionNumber].answers[j]==questions[questionNumber].givenAns) {
             checked="checked";
         }//check box if user already answered
@@ -99,8 +99,7 @@ function generateQ() {//generates next question
         }
         inputs += '<input type="radio" name="Answer" value="' + questions[questionNumber].answers[j]+'" '+checked+'/><label>' + questions[questionNumber].answers[j] + '</label><br/>';
         j++;
-   }//generate inputs
-    while(j<questions[questionNumber].answers.length);
+    }//generate inputs
     var stdForm = '<form><h>' + questions[questionNumber].question+'</h></center><br/><br/>' + inputs+'<center><br/>';//generate question + inputs
     if (questionNumber>0){
         stdForm+='<input type="button" value="Prev" id = "Prev" onClick="getAnswerNext(this.form, false)">';
