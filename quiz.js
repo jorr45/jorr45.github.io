@@ -10,80 +10,18 @@ var questions=[{
         "givenAns": 0
 }];
 var title="A";
-/*var questions = [{//list of questions, answers, correct answer, user's answer
-        "question": "Which of the following U.S. Supreme Court decisions legalized abortion in all 50 states?",
-        "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
-        "correct": "Roe v. Wade",
-        "givenAns": 0
-    },
-    {
-        "question": "How many Supreme Court justices are there?",
-        "answers": ["5", "7", "8","9"],
-        "correct": "9",
-        "givenAns": 0
-    },
-    {
-        "question": "In what year was the current Court building constructed?",
-        "answers": ["1776", "1856", "1889","1932", "1964"],
-        "correct": "1932",
-        "givenAns": 0
-    },
-    {
-        "question": "Who was the Chief Justice from 1969 to 1986?",
-        "answers": ["John Roberts", "John Marshall", "William Rehnquist", "Earl Warren", "Warren Burger"],
-        "correct": "Warren Burger",
-        "givenAns": 0
-    },
-    {
-        "question": "Which Article in the Constitution describes the powers of the judiciary?",
-        "answers": ["I", "II", "III", "IV", "V", "VI", "VII"],
-        "correct": "III",
-        "givenAns": 0
-    },
-    {
-        "question": "How many justices were on the Supreme Court at the time of its creation?",
-        "answers": ["5", "6","7", "9"],
-        "correct": "6",
-        "givenAns": 0
-    },
-    {
-        "question": "Who was the first black Supreme Court Justice?",
-        "answers": ["Thurgood Marshall", "Clarence Thomas", "Barack Obama", "Martin Luther King Jr."],
-        "correct": "Thurgood Marshall",
-        "givenAns": 0
-    },
-    {
-        "question": "Approximatley how many cases, on average, does the Supreme Court hear in a given year?",
-        "answers": ["10", "100", "500", "1000", "5000"],
-        "correct": "100",
-        "givenAns": 0
-    },
-    {
-        "question": "The landmark case Madison v. Marbury most famously dealt with what topic?",
-        "answers": ["Free Speech", "Interstate Commerce", "Anti-Trust Law", "Judicial Review"],
-        "correct": "Judicial Review",
-        "givenAns": 0
-    },
-    {
-        "question": "Who is the only Supreme Court justice to have ever been impeached?",
-        "answers": ["Roger Taney", "Samuel Chase", "Louis Brandeis", "Harold Blackmun"],
-        "correct": "Samuel Chase",
-        "givenAns": 0
-    }
-];//json*/
-
-
 
 jQuery(document).ready(function () {
        generateNamePage();//generate name page on page load
        $.getJSON("quiz.json", function(results){
                JSON = results;
                console.log(JSON.title);
+               questions=JSON.questions;
+                title=JSON.title;
+                $("#numCorrect").text(title);
                
        });
-        questions=JSON.questions;
-        title=JSON.title;
-        $("#numCorrect").text(title);
+        
 });
 
 
