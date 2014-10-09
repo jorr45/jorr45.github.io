@@ -15,7 +15,7 @@ var title="A";
 jQuery(document).ready(function () {
          JSON2=$.getJSON("quiz.json")
                //JSON = data;
-             //  console.log("success");
+               console.log("success");
              //  questions=JSON.questions;
              //   title=JSON.title;
              //   $("#numCorrect").text(title);
