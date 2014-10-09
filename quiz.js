@@ -12,10 +12,10 @@ var questions=[{
 var title="A";
 
 jQuery(document).ready(function () {
-         alert("A");
+         
        generateNamePage();//generate name page on page load
        $.getJSON("quiz.json", function(results){
-              
+              alert("A");
                JSON = results;
                console.log(JSON.title);
                questions=JSON.questions;
