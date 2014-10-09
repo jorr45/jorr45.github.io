@@ -13,14 +13,14 @@ var questions=[{
 var title="A";
 
 jQuery(document).ready(function () {
-         $.getJSON("quiz.json", function(data){
+         $.getJSON("quiz.json")
                //JSON = data;
              //  console.log("success");
              //  questions=JSON.questions;
              //   title=JSON.title;
              //   $("#numCorrect").text(title);
             //   
-       })
+       
        .done(function() {
             console.log( "second success" );
           })
