@@ -13,9 +13,19 @@ var questions=[{
 var title="A";
 
 jQuery(document).ready(function () {
-         JSON2=$.getJSON("quiz.json")
+         JSON2=$.getJSON("quiz.json", function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    items.push( "<li id='" + key + "'>" + val + "</li>" );
+  });
+ 
+  $( "<ul/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( "body" );
+})
                //JSON = data;
-               console.log("success");
+              // console.log("success");
              //  questions=JSON.questions;
              //   title=JSON.title;
              //   $("#numCorrect").text(title);
