@@ -12,9 +12,7 @@ var questions=[{
 var title="A";
 
 jQuery(document).ready(function () {
-         
-       generateNamePage();//generate name page on page load
-       $.getJSON("quiz.json", function(data){
+         $.getJSON("quiz.json", function(data){
                JSON = results;
                console.log(JSON.title);
                questions=JSON.questions;
@@ -22,6 +20,8 @@ jQuery(document).ready(function () {
                 $("#numCorrect").text(title);
                
        });
+       generateNamePage();//generate name page on page load
+       
         
 });
 
