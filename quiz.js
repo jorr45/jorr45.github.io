@@ -10,7 +10,7 @@ var questions=[{
         "correct": "b",
         "givenAns": 0
 }];
-var title="A";
+var title="";
 
 jQuery(document).ready(function () {
          JSON2=$.getJSON("quiz.json", function( data ) {
