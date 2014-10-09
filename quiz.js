@@ -14,12 +14,21 @@ var title="A";
 jQuery(document).ready(function () {
          $.getJSON("quiz.json", function(data){
                JSON = data;
-               console.log(JSON.title);
+               console.log("success");
                questions=JSON.questions;
                 title=JSON.title;
                 $("#numCorrect").text(title);
                
-       });
+       })
+       .done(function() {
+            console.log( "second success" );
+          })
+          .fail(function() {
+            console.log( "error" );
+          })
+          .always(function() {
+            console.log( "complete" );
+          });
        generateNamePage();//generate name page on page load
        
         
