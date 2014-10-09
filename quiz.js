@@ -13,7 +13,7 @@ var title="A";
 
 jQuery(document).ready(function () {
          $.getJSON("quiz.json", function(data){
-               JSON = results;
+               JSON = data;
                console.log(JSON.title);
                questions=JSON.questions;
                 title=JSON.title;
