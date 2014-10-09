@@ -1,4 +1,4 @@
-{"questions" : [{//list of questions, answers, correct answer, user's answer
+{"questions" : [{
         "question": "Which of the following U.S. Supreme Court decisions legalized abortion in all 50 states?",
         "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
         "correct": "Roe v. Wade",
@@ -59,4 +59,4 @@
         "givenAns": 0
     }
 ],
-"title": "Supreme Court Quiz"}//json
+"title": "Supreme Court Quiz"}
