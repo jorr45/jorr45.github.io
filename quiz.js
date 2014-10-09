@@ -3,6 +3,7 @@ var recAnswer=0;
 var checked="";
 var userName="";
 var JSON;
+var JSON2;
 var questions=[{
         "question": "This is a TEST",
         "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
@@ -12,7 +13,7 @@ var questions=[{
 var title="A";
 
 jQuery(document).ready(function () {
-         $.getJSON("quiz.json", function(data){
+         JSON2=$.getJSON("quiz.json", function(data){
                JSON = data;
                console.log("success");
                questions=JSON.questions;
