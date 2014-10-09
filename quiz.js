@@ -12,10 +12,11 @@ var questions=[{
 }];
 var title="A";
 
-//
-         JSON2=$.getJSON("quiz.json", function( json ) {
-  console.log( "JSON Data: ");
- })
+jQuery(document).ready(function () {
+
+        JSON2=$.getJSON("quiz.json", function( json ) {
+        console.log( "JSON Data: ");
+        })
                //JSON = data;
               // console.log("success");
              //  questions=JSON.questions;
@@ -32,7 +33,6 @@ var title="A";
           .always(function() {
             console.log( "complete" );
           });
-          jQuery(document).ready(function () {
        generateNamePage();//generate name page on page load
        
         
