@@ -13,26 +13,17 @@ var questions=[{
 var title="A";
 
 jQuery(document).ready(function () {
+         JSON2=$.getJSON("quiz.json", function( data ) {
 
-        JSON2=$.getJSON("quiz.json", function( json ) {
-        console.log( "JSON Data: ");
-        })
-               //JSON = data;
-              // console.log("success");
-             //  questions=JSON.questions;
-             //   title=JSON.title;
-             //   $("#numCorrect").text(title);
-            //   
+               JSON = data;
+                console.log(JSON);
+                questions=JSON.questions;
+                title=JSON.title;
+             $("#numCorrect").text(title);
+         });
        
-       .done(function() {
-            console.log( "second success" );
-          })
-          .fail(function() {
-            console.log( "error" );
-          })
-          .always(function() {
-            console.log( "complete" );
-          });
+       
+          
        generateNamePage();//generate name page on page load
        
         
