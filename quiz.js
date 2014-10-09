@@ -13,7 +13,7 @@ var questions=[{
 var title="A";
 
 jQuery(document).ready(function () {
-         $.getJSON("quiz.json")
+         JSON2=$.getJSON("quiz.json")
                //JSON = data;
              //  console.log("success");
              //  questions=JSON.questions;
