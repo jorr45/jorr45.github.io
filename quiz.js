@@ -2,6 +2,7 @@ var questionNumber = -1;
 var recAnswer=0;
 var checked="";
 var userName="";
+var password="";
 var JSON;
 var JSON2;
 var questions=[{
@@ -57,16 +58,18 @@ function generateQ() {//generates next question
 
 
 function generateNamePage(){//generate name page
-    $("#questions").append('<form><h>What is your name? </h><input type="text" name="Name"/><input type="button" value="Begin" onClick = "submitName(this.form)"/></form>');
+    $("#questions").append('<form><h>Username: </h><input type="text" name="Name"/><br><input type="text" name="Pass"/><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
 }
 
-function submitName(form){//user submits name
+function login(form){//user submits name
     userName=form.elements[0].value;//get name, store it in var
+    password=form.elements[1].value;
+  //  if (JSON.users.has(username)){
     $("#questions").remove();//remove name area
     questionNumber++;//go to next (first) question
     $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
     $(".Question").fadeIn();//fade question in
-}//submitName           
+}//login           
 
 
 function submitQuiz(form){
