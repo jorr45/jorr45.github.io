@@ -112,7 +112,7 @@ function signup(form){
             $("#questions").prepend('<h class="wrongPW"><i><center>Username already taken!</center></i></h>');
     }
     else{
-            JSON.users[userName]=password;
+            JSON.users.userName=password;
             localStorage.users=JSON.stringify(JSON.users);
     }
 }
