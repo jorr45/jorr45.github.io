@@ -165,7 +165,7 @@ function submitQuiz(form){
     localStorage.setItem("scores", JSON.stringify(scores));
     
     var scoreReport = '';
-    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+i+1+" of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
+    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+(i+1)+" of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
     
     var correctNums = '';
     for (var j=0; j<correctNumbers.length; j++){
