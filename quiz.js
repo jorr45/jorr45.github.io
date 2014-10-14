@@ -93,15 +93,11 @@ function login(form){//user submits name
             else{//wrong pw
                 $("#wrongPW").remove();
                 $("#questions").prepend('<p id="wrongPW"><i><center>Incorrect username/password combination!</center></i></p>')
-                $("#wrongPW").hide();
-                $("#wrongPW").fadeIn();
             }
     }
     else{//user doesn't exist in system
         $("#wrongPW").remove();
         $("#questions").prepend('<p id="wrongPW"><i><center>Cannot find username in database. Please sign up before attempting to log in.</center></i></p>')
-        $("#wrongPW").hide();
-        $("#wrongPW").fadeIn();
     }
             
    
