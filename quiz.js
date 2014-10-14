@@ -4,7 +4,7 @@ var checked="";
 var userName="";
 var password="";
 var JSON2;
-var users=new Object();
+var users={};
 var scores=new Array();
 var questions=[{
         "question": "This is a TEST",
