@@ -108,6 +108,7 @@ function signup(form){
             JSON2.users[userName]=password;
             var temp = JSON2.users;
             localStorage.setItem=("users", JSON.stringify(temp));
+            alert("Hi");
     }
 }
 
