@@ -21,7 +21,7 @@ function generateNamePage(){//generate name page
 
 
 jQuery(document).ready(function () {
-         $.getJSON("quiz.json", function( data ) {
+         JSON2=$.getJSON("quiz.json", function( data ) {
 
                JSON2 = data;
                 questions=JSON2.questions;
