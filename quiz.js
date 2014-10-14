@@ -79,19 +79,25 @@ function login(form){//user submits name
     password=form.elements[1].value;
     if (JSON.users.has(username)){
             if (JSON.users.username === password){
+                if (JSON.recent_user != userName){
+                            for (var i =0; i<JSON.questions.length; i++){
+                                    sessionStorage.removeItem("Q"+i+" Answer");//remove stored answers if different user
+                            }
+                }
+                JSON.recent_user = userName;//save new user as recent one
                 $("#questions").remove();//remove name area
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);//go to next (first) question
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
                 $(".Question").fadeIn();//fade question in    
-            }
-            else{
+            }//rigght pw
+            else{//wrong pw
                 $("#wrongPW").remove();
                 $("#questions").prepend('<p id="wrongPW"><i><center>Incorrect username/password combination!</center></i></p>')
                 $("#wrongPW").hide();
                 $("#wrongPW").fadeIn();
             }
     }
-    else{
+    else{//user doesn't exist in system
         $("#wrongPW").remove();
         $("#questions").prepend('<p id="wrongPW"><i><center>Cannot find username in database. Please sign up before attempting to log in.</center></i></p>')
         $("#wrongPW").hide();
