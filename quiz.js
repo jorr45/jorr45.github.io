@@ -186,11 +186,11 @@ function outputScore() {
     }
     
     $("#numCorrect").after("<h4>Great job, "+userName+"!" + scoreReport+"</h4><br><input type='button' id='details' value='Show/Hide Details'><table class='hidden'><tr><th>Rank</th><th>Username</th><th>Score</th></tr>"+moreDetails+"</table><br><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font>");//display correct and incorrect answers
-
+    
     outputGraph(correctNumbers.length, incorrectNumbers.length);
 }
 
-$(".grad").on('click', "#details", function(){
+$("#details").on('click', function(){
         $(".hidden").slideToggle();
         alert("run");
 });
