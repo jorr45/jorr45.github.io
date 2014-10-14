@@ -194,9 +194,9 @@ function outputScore() {
     outputGraph(correctNumbers.length, incorrectNumbers.length);
 }
 
-$.on('click', "#details"){
+$.on('click', "#details", function(){
         $(".hidden").toggleSlide();
-}
+});
 
 function outputGraph(numCorrect, numIncorrect){
     var myColor = ["#11EE11","#D95B43"];
