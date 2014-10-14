@@ -174,7 +174,7 @@ function outputScore() {
     scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+place+" of users who took this quiz on this browser, out of "+scores.length+" total browser attempts.";
     var moreDetails='';//generate table with comparisons
     for (var j=0; j<scores.length; j++){
-            moreDetails+="<tr><td>"+j+"</td><td>"+scores[j][1]+"</td><td>"+scores[j][0]+"</td></tr>";
+            moreDetails+="<tr><td>"+Number(j+1)+"</td><td>"+scores[j][1]+"</td><td>"+scores[j][0]+"</td></tr>";
     }
     var correctNums = '';
     for (var j=0; j<correctNumbers.length; j++){
@@ -186,14 +186,14 @@ function outputScore() {
     }
     
     $("#numCorrect").after("<h4>Great job, "+userName+"!" + scoreReport+"</h4><br><input type='button' id='details' value='Show/Hide Details'><table class='hidden'><tr><th>Rank</th><th>Username</th><th>Score</th></tr>"+moreDetails+"</table><br><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font>");//display correct and incorrect answers
-    
-    outputGraph(correctNumbers.length, incorrectNumbers.length);
-}
-
-$("#details").on('click', function(){
+    $("#details").on('click', function(){
         $(".hidden").slideToggle();
         alert("run");
 });
+    outputGraph(correctNumbers.length, incorrectNumbers.length);
+}
+
+
 
 function outputGraph(numCorrect, numIncorrect){
     var myColor = ["#11EE11","#D95B43"];
