@@ -1,4 +1,6 @@
-sessionStorage.setItem("questionNumber", -1);
+if (sessionStorage.getItem("questionNumber")==null){
+        sessionStorage.setItem("questionNumber", -1);
+}
 var recAnswer=0;
 var checked="";
 var userName="";
@@ -27,8 +29,14 @@ jQuery(document).ready(function () {
          });
        
        
-          
-       generateNamePage();//generate name page on page load
+        if (if (sessionStorage.getItem("questionNumber")==-1){
+  
+                generateNamePage();//generate name page on page load
+        }
+        
+        else{
+                generateQ();
+        }
        
         
 });
