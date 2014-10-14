@@ -192,7 +192,7 @@ function outputScore() {
     outputGraph(correctNumbers.length, incorrectNumbers.length);
 }
 
-function outputGraph(var numCorrect, var numIncorrect){
+function outputGraph(numCorrect, numIncorrect){
     var myColor = ["#11EE11","#D95B43"];
     var myData = [numCorrect, numIncorrect];
     plotData(myColor, myData);
