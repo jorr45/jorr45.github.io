@@ -194,7 +194,7 @@ function outputScore() {
     outputGraph(correctNumbers.length, incorrectNumbers.length);
 }
 
-$.on('click', "#details", function(){
+$("a").on('click', "#details", function(){
         $(".hidden").toggleSlide();
 });
 
