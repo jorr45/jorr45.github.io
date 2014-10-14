@@ -109,6 +109,7 @@ function signup(form){
             users[userName]=password;
             var temp = users;
             localStorage.setItem("users", JSON.stringify(temp));
+            login(form);
     }
 }
 
