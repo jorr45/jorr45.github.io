@@ -33,7 +33,7 @@ jQuery(document).ready(function () {
        
         JSON2.recentUser = localStorage["recentUser"];
         generateNamePage();
-        if (localStorage.getItem("scores") != null && localStorage.getItem("scores")!=undefined){
+        if (localStorage.getItem("user") != null && localStorage.getItem("users")!=undefined){
                 users=$.parseJSON(localStorage.getItem("users"));//get users
         }
         if (localStorage.getItem("scores") != null && localStorage.getItem("scores")!=undefined){
