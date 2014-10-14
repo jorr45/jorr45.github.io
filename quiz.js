@@ -4,7 +4,7 @@ var checked="";
 var userName="";
 var password="";
 var JSON2;
-var users;
+var users=new Array();
 var scores=new Array();
 var questions=[{
         "question": "This is a TEST",
@@ -33,9 +33,11 @@ jQuery(document).ready(function () {
        
         JSON2.recentUser = localStorage["recentUser"];
         generateNamePage();
-        users=$.parseJSON(localStorage.getItem("users"));
         if (localStorage.getItem("scores") != null && localStorage.getItem("scores")!=undefined){
-            scores=$.parseJSON(localStorage.getItem("scores"));
+                users=$.parseJSON(localStorage.getItem("users"));//get users
+        }
+        if (localStorage.getItem("scores") != null && localStorage.getItem("scores")!=undefined){
+            scores=$.parseJSON(localStorage.getItem("scores"));//get scores
         }        
 });
 
