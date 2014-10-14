@@ -119,8 +119,7 @@ function signup(form){
 
 function submitQuiz(form){
     $(".Question").hide();
-    var correctNumbers = [];
-    var incorrectNumbers = [];
+    
     for (var i=0; i<form.Answer.length; i++){
         if (form.Answer[i].checked){
             recAnswer=form.Answer[i].value;
@@ -131,6 +130,15 @@ function submitQuiz(form){
     sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
     $("#questions").remove();
     
+    outputScore();
+
+    
+    
+}//submitQuiz
+
+function outputScore() {
+    var correctNumbers = [];
+    var incorrectNumbers = [];
     for (var j=0; j<questions.length; j++){
         if (questions[j].givenAns == questions[j].correct){
             correctNumbers[correctNumbers.length]=j;//array of correct
@@ -180,14 +188,16 @@ function submitQuiz(form){
     }
     
     $("#numCorrect").after("<div id='questions'><h4>Great job, "+userName+"!" + scoreReport+"</h4><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font></div>");//display correct and incorrect answers
+
+    outputGraph(correctNumbers.length, incorrectNumbers.length)
+}
+
+function outputGraph(var numCorrect, var numIncorrect){
     var myColor = ["#11EE11","#D95B43"];
-    var myData = [correctNumbers.length,incorrectNumbers.length];
+    var myData = [numCorrect, numIncorrect];
     plotData(myColor, myData);
     $(".Question").fadeIn();
-
-    
-    
-}//submitQuiz
+}
 
 
 //adapted form http://html5.litten.com/graphing-data-in-the-html5-canvas-element-part-iv-simple-pie-charts/
