@@ -157,7 +157,7 @@ function submitQuiz(form){
                     scores[scores.length][1]=userName;
             }
             else{
-                    scores[i][0]=correctNumbers.length;
+                    scores[0][0]=correctNumbers.length;
                     scores[i][1]=userName;
             }
     }
