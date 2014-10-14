@@ -30,16 +30,8 @@ jQuery(document).ready(function () {
          });
        
         JSON.recentUser = localStorage["recentUser"];
-        /*if (sessionStorage.getItem("questionNumber")>-1){
-                $("#questions").remove();
-                $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");
-                $(".Question").fadeIn();
-        }
-        else {*/
-                generateNamePage();//generate name page on page load)
-        //}
-       
-       //JSON.users=JSON.parse(localStorage["users"]);
+        generateNamePage();
+        JSON.users=jQuery.parseJSON(localStorage["users"]);
        //JSON.scores=JSON.parse(localStorage["scores"]);
         
 });
