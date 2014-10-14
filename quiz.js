@@ -144,7 +144,7 @@ function submitQuiz(form){
             for (i=0; i<scores.length; i++){//place score in order
                     if (correctNumbers.length>scores[i][0]){
                             for (k = scores.length; k>i; k--){
-                                    scores[k+1]=scores[k];//move all lower scores down 1
+                                    scores[k]=scores[k-1];//move all lower scores down 1
                                     console.log("k loop");
                             }
                             break;
