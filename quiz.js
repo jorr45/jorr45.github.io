@@ -176,7 +176,7 @@ function outputScore() {
     var scoreReport = '';
     var place = 1+i;
     scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+place+" of users who took this quiz on this browser, out of "+scores.length+" total browser attempts.";
-    var moreDetails;
+    var moreDetails='';
     for (var j=0; j<scores.length; j++){
             moreDetails+="<tr><td>"+j+"</td><td>"+scores[j][1]+"</td><td>"+scores[j][0]+"</td></tr>";
     }
