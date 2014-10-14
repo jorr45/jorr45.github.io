@@ -5,6 +5,7 @@ var userName="";
 var password="";
 var JSON2;
 var users;
+var score;
 var questions=[{
         "question": "This is a TEST",
         "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
@@ -33,7 +34,7 @@ jQuery(document).ready(function () {
         JSON2.recentUser = localStorage["recentUser"];
         generateNamePage();
         users=$.parseJSON(localStorage.getItem("users"));
-       //JSON2.scores=JSON.parse(localStorage["scores"]);
+        scores=$.parseJSON(localStorage.getItem("scores"));
         
 });
 
@@ -136,7 +137,23 @@ function submitQuiz(form){
             incorrectNumbers[incorrectNumbers.length]=j;//array of incorrect
         }
     }
-    
+    if (scores.length>0){
+            for (var i = 0; i<scores.length; i++){//place score in order
+                    if (correctNumbers.length>scores[i][0]){
+                            for (var k = scores.length; k>i; k--){
+                                    scores[k]=scores[k-1];//move all scores down 1
+                            }
+                    }
+                    scores[i][0]=correctNumbers.length;
+                    scores[i][1]=userName;
+            }
+    }
+    var scoreReport = '';
+    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+".\\n That means you are in "+i+"th place of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
+    else{ //if nothing placed yet
+            scores[0][0]=correctNumbers.length;
+            scores[0][1]=userName;
+    }
     var correctNums = '';
     for (var j=0; j<correctNumbers.length; j++){
         correctNums+="<a title='Question: "+questions[correctNumbers[j]].question + "\nAnswer: "  +questions[correctNumbers[j]].correct+"'>#"+correctNumbers[j]+1+"</a> ";//create tooltip correct
@@ -146,7 +163,7 @@ function submitQuiz(form){
         incorrectNums+="<a title='Question: "+questions[incorrectNumbers[j]].question + "\nYour Answer: " +questions[incorrectNumbers[j]].givenAns + "\nCorrect Answer: "  +questions[incorrectNumbers[j]].correct+"'>#"+incorrectNumbers[j]+1+"</a>  ";//create tooltip incorrect
     }
     
-    $("#numCorrect").after("<div id='questions'><h4>Great job, "+userName+"!</h4><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font></div>");//display correct and incorrect answers
+    $("#numCorrect").after("<div id='questions'><h4>Great job, "+userName+"!" + scoreReport+"</h4><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font></div>");//display correct and incorrect answers
     var myColor = ["#11EE11","#D95B43"];
     var myData = [correctNumbers.length,incorrectNumbers.length];
     plotData(myColor, myData);
