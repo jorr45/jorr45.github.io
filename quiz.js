@@ -8,7 +8,7 @@ var users;
 var scores = new Array([]);
 var questions=[{
         "question": "This is a TEST",
-        "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
+        "answers": ["Test", "Test123", "TEST", "Tesssst"],
         "correct": "b",
         "givenAns": 0
 }];
