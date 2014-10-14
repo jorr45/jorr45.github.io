@@ -1,4 +1,4 @@
-var questionNumber = -1;
+sessionStorage.setItem("questionNumber", -1);
 var recAnswer=0;
 var checked="";
 var userName="";
@@ -30,6 +30,7 @@ jQuery(document).ready(function () {
 
 
 function generateQ() {//generates next question
+    var questionNumber = Number(sessionStorage.getItem("questionNumber"));
     var inputs ='';
     var j=0;
     givenAns = sessionStorage.getItem("Q"+questionNumber+" Answer");
@@ -40,7 +41,7 @@ function generateQ() {//generates next question
         else {
             checked="";
         }
-        inputs += '<input type="radio" name="Answer" value="' + questions[questionNumber].answers[j]+'" '+checked+'/><label>' + questions[questionNumber].answers[j] + '</label><br/>';
+        inputs += '<input type="radio" name="Answer" value="' + questions[Number(sessionStorage.getItem("questionNumber")].answers[j]+'" '+checked+'/><label>' + questions[questionNumber].answers[j] + '</label><br/>';
         j++;
     }//generate inputs
     var stdForm = '<form><h>' + questions[questionNumber].question+'</h></center><br/><br/>' + inputs+'<center><br/>';//generate question + inputs
@@ -67,7 +68,7 @@ function login(form){//user submits name
    /* if (JSON.users.has(username)){
             if (JSON.users.username === password){*/
                 $("#questions").remove();//remove name area
-                questionNumber++;//go to next (first) question
+                sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);//go to next (first) question
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
                 $(".Question").fadeIn();//fade question in    
            /* }
@@ -99,8 +100,8 @@ function submitQuiz(form){
         }//save answer to variable
     }
     //questions[questionNumber].givenAns=recAnswer;//save answer to JSON
-    sessionStorage.setItem("Q"+questionNumber+" Answer", recAnswer)//save last answer to sessionstorage
-    questionNumber++;
+    sessionStorage.setItem("Q"+Number(sessionStorage.getItem("questionNumber")+" Answer", recAnswer)//save last answer to sessionstorage
+    sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
     $("#questions").remove();
     
     for (var j=0; j<questions.length; j++){
@@ -175,14 +176,14 @@ function getAnswerNext(form, isNext) {//record answer, get next Q
         }//save answer to variable
     }
     //questions[questionNumber].givenAns=recAnswer;//save answer to JSON
-    sessionStorage.setItem("Q"+questionNumber+" Answer", recAnswer);//save answer to sessionStorage
+    sessionStorage.setItem("Q"+Number(sessionStorage.getItem("questionNumber"))+" Answer", recAnswer);//save answer to sessionStorage
     if (recAnswer!=0 || isNext!=true){//if answer was submitted or previous question accessed, switch questions
         $("#questions").remove();
         if (isNext==true){//if next
-            questionNumber++;
+                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
         }
         else{//if previous
-            questionNumber--;
+                sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))-1);
         }
         $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");
         $(".Question").fadeIn();
