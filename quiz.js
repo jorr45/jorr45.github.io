@@ -102,7 +102,7 @@ function submitQuiz(form){
         }//save answer to variable
     }
     //questions[questionNumber].givenAns=recAnswer;//save answer to JSON
-    sessionStorage.setItem("Q"+Number(sessionStorage.getItem("questionNumber")+" Answer", recAnswer);//save last answer to sessionstorage
+    sessionStorage.setItem("Q"+sessionStorage.getItem("questionNumber")+" Answer", recAnswer);//save last answer to sessionstorage
     sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
     $("#questions").remove();
     
