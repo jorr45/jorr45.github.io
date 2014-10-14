@@ -4,7 +4,6 @@ var checked="";
 var userName="";
 var password="";
 var JSON;
-var JSON2;
 var questions=[{
         "question": "This is a TEST",
         "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
@@ -14,7 +13,7 @@ var questions=[{
 var title="A";
 
 jQuery(document).ready(function () {
-         JSON2=$.getJSON("quiz.json", function( data ) {
+         $.getJSON("quiz.json", function( data ) {
 
                JSON = data;
                 questions=JSON.questions;
@@ -33,8 +32,9 @@ jQuery(document).ready(function () {
 function generateQ() {//generates next question
     var inputs ='';
     var j=0;
+    givenAns = sessionStorage.getItem("Q"+questionNumber+" Answer");
     while(j<questions[questionNumber].answers.length){
-        if (questions[questionNumber].answers[j]==questions[questionNumber].givenAns) {
+        if (questions[questionNumber].answers[j]==givenAns) {
             checked="checked";
         }//check box if user already answered
         else {
@@ -64,11 +64,28 @@ function generateNamePage(){//generate name page
 function login(form){//user submits name
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value;
-  //  if (JSON.users.has(username)){
-    $("#questions").remove();//remove name area
-    questionNumber++;//go to next (first) question
-    $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
-    $(".Question").fadeIn();//fade question in
+   /* if (JSON.users.has(username)){
+            if (JSON.users.username === password){*/
+                $("#questions").remove();//remove name area
+                questionNumber++;//go to next (first) question
+                $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
+                $(".Question").fadeIn();//fade question in    
+           /* }
+            else{
+                $("#wrongPW").remove();
+                $("#questions").prepend('<p id="wrongPW"><i><center>Incorrect username/password combination!</center></i></p>')
+                $("#wrongPW").hide();
+                $("#wrongPW").fadeIn();
+            }
+    }
+    else{
+        $("#wrongPW").remove();
+        $("#questions").prepend('<p id="wrongPW"><i><center>Cannot find username in database. Please sign up before attempting to log in.</center></i></p>')
+        $("#wrongPW").hide();
+        $("#wrongPW").fadeIn();
+    }*/
+            
+   
 }//login           
 
 
@@ -81,7 +98,8 @@ function submitQuiz(form){
             recAnswer=form.Answer[i].value;
         }//save answer to variable
     }
-    questions[questionNumber].givenAns=recAnswer;//save answer to JSON
+    //questions[questionNumber].givenAns=recAnswer;//save answer to JSON
+    sessionStorage.setItem("Q"+questionNumber+" Answer", recAnswer)//save last answer to sessionstorage
     questionNumber++;
     $("#questions").remove();
     
@@ -156,7 +174,8 @@ function getAnswerNext(form, isNext) {//record answer, get next Q
             recAnswer=form.Answer[i].value;
         }//save answer to variable
     }
-    questions[questionNumber].givenAns=recAnswer;//save answer to JSON
+    //questions[questionNumber].givenAns=recAnswer;//save answer to JSON
+    sessionStorage.setItem("Q"+questionNumber+" Answer", recAnswer);//save answer to sessionStorage
     if (recAnswer!=0 || isNext!=true){//if answer was submitted or previous question accessed, switch questions
         $("#questions").remove();
         if (isNext==true){//if next
