@@ -141,17 +141,14 @@ function submitQuiz(form){
     if (scores.length>0){
             var i=0;
             var k;
-            while(i<scores.length){//place score in order
+            for (i=0; i<scores.length; i++){//place score in order
                     if (correctNumbers.length>scores[i][0]){
-                            k = scores.length;
-                            while (k>i){
+                            for (k = scores.length; k>i; k--){
                                     scores[k]=scores[k-1];//move all lower scores down 1
-                                    k--;
                                     console.log("k loop");
                             }
                             break;
                     }
-                    i++;
             }
             if (k==0){//score not greater than any on leaderboard
                     scores[scores.length]=[correctNumbers.length, userName];
