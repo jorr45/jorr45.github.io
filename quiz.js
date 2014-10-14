@@ -103,7 +103,7 @@ function submitQuiz(form){
     }
     //questions[questionNumber].givenAns=recAnswer;//save answer to JSON
     sessionStorage.setItem("Q"+Number(sessionStorage.getItem("questionNumber")+" Answer", recAnswer)//save last answer to sessionstorage
-    sessionStorage.setItem("questionNumcber", Number(sessionStorage.getItem("questionNumber"))+1);
+    sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
     $("#questions").remove();
     
     for (var j=0; j<questions.length; j++){
