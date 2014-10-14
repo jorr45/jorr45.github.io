@@ -1,6 +1,6 @@
-//if (sessionStorage.getItem("questionNumber")===null || sessionStorage.getItem("questionNumber")===undefined){
+if (sessionStorage.getItem("questionNumber")===null || sessionStorage.getItem("questionNumber")===undefined){
         sessionStorage.setItem("questionNumber", -1);
-//}
+}
 var recAnswer=0;
 var checked="";
 var userName="";
@@ -38,7 +38,7 @@ jQuery(document).ready(function () {
                 generateNamePage();//generate name page on page load)
         }
        
-       JSON.users=JSON.parse(localStorage["users"]);
+       //JSON.users=JSON.parse(localStorage["users"]);
        JSON.scores=JSON.parse(localStorage["scores"]);
         
 });
