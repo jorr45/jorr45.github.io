@@ -15,6 +15,9 @@ var questions=[{
 var title="A";
 
 function generateNamePage(){//generate name page
+    if (JSON.recentUser === undefined){
+            JSON.recentUser = "";
+    }
     $("#questions").append('<form><h>Username: </h><input type="text" name="Name" value="'+JSON.recentUser+'"/><br><h>Password: </h><input type="text" name="Pass"/><br><br><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
 }
 
