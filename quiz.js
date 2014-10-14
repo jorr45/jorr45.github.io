@@ -119,7 +119,6 @@ function signup(form){
 
 function submitQuiz(form){
     $(".Question").hide();
-    
     for (var i=0; i<form.Answer.length; i++){
         if (form.Answer[i].checked){
             recAnswer=form.Answer[i].value;
@@ -177,7 +176,10 @@ function outputScore() {
     var scoreReport = '';
     var place = 1+i;
     scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+place+" of users who took this quiz on this browser, out of "+scores.length+" total browser attempts.";
-    
+    var moreDetails;
+    for (var j=0; j<scores.length; j++){
+            moreDetails+="<tr><td>"+j+"</td><td>"+scores[j][1]+"</td><td>"+score[j][0]+"</td></tr>";
+    }
     var correctNums = '';
     for (var j=0; j<correctNumbers.length; j++){
         correctNums+="<a title='Question: "+questions[correctNumbers[j]].question + "\nAnswer: "  +questions[correctNumbers[j]].correct+"'>#"+Number(correctNumbers[j]+1)+"</a> ";//create tooltip correct
@@ -187,9 +189,13 @@ function outputScore() {
         incorrectNums+="<a title='Question: "+questions[incorrectNumbers[j]].question + "\nYour Answer: " +questions[incorrectNumbers[j]].givenAns + "\nCorrect Answer: "  +questions[incorrectNumbers[j]].correct+"'>#"+Number(incorrectNumbers[j]+1)+"</a>  ";//create tooltip incorrect
     }
     
-    $("#numCorrect").after("<div id='questions'><h4>Great job, "+userName+"!" + scoreReport+"</h4><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font></div>");//display correct and incorrect answers
+    $("#numCorrect").after("<div id='questions'><h4>Great job, "+userName+"!" + scoreReport+"</h4><br><a id='details'>More Details</a><table class='hidden'><tr><th>Rank</th><th>Username</th><th>Score</th></tr>"+moreDetails+"</table><br><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font></div>");//display correct and incorrect answers
 
     outputGraph(correctNumbers.length, incorrectNumbers.length);
+}
+
+$.on('click', "#details"){
+        $(".hidden").toggleSlide();
 }
 
 function outputGraph(numCorrect, numIncorrect){
