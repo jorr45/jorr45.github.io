@@ -5,7 +5,7 @@ var userName="";
 var password="";
 var JSON2;
 var users;
-var scores = new Array([]);
+var scores;
 var questions=[{
         "question": "This is a TEST",
         "answers": ["Test", "Test123", "TEST", "Tesssst"],
