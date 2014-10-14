@@ -157,11 +157,7 @@ function submitQuiz(form){
                     scores[scores.length][1]=userName;
             }
             else{
-                    if (i>scores.length){
-                            scores.length=i+1;
-                    }
-                    scores[i][0]=correctNumbers.length;
-                    scores[i][1]=userName;
+                    scores[i]=[correctNumbers.length, userName];
             }
     }
     else{ //if nothing placed yet
