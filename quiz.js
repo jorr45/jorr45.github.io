@@ -12,6 +12,11 @@ var questions=[{
 }];
 var title="A";
 
+function generateNamePage(){//generate name page
+    $("#questions").append('<form><h>Username: </h><input type="text" name="Name"/><br><input type="text" name="Pass"/><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
+}
+
+
 jQuery(document).ready(function () {
          $.getJSON("quiz.json", function( data ) {
 
@@ -58,9 +63,6 @@ function generateQ() {//generates next question
 }//generateQ
 
 
-function generateNamePage(){//generate name page
-    $("#questions").append('<form><h>Username: </h><input type="text" name="Name"/><br><input type="text" name="Pass"/><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
-}
 
 function login(form){//user submits name
     userName=form.elements[0].value;//get name, store it in var
@@ -190,6 +192,5 @@ function getAnswerNext(form, isNext) {//record answer, get next Q
     }
     recAnswer=0;
 }//getAnswerNext
-
 
 
