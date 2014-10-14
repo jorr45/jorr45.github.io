@@ -105,20 +105,15 @@ function login(form){//user submits name
 function signup(form){
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value; 
-    if (password.length>2){
-            if (userName in users){
-                    $(".wrongPW").remove();
-                    $("#questions").prepend('<h class="wrongPW"><i><center>Username already taken!</center></i></h>');
-            }
-            else{
-                    users[userName]=password;
-                    var temp = users;
-                    localStorage.setItem("users", JSON.stringify(temp));
-                    login(form);
-            }
+    if (userName in users){
+        $(".wrongPW").remove();
+        $("#questions").prepend('<h class="wrongPW"><i><center>Username already taken!</center></i></h>');
     }
     else{
-           alert("Please choose a password that is at least three characters long!");
+        users[userName]=password;
+        var temp = users;
+        localStorage.setItem("users", JSON.stringify(temp));
+        login(form);
     }
 }//signup
 
