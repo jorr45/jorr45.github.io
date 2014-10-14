@@ -29,7 +29,7 @@ jQuery(document).ready(function () {
          });
        
        
-        if (if (sessionStorage.getItem("questionNumber")==-1){
+        if (sessionStorage.getItem("questionNumber")==-1){
   
                 generateNamePage();//generate name page on page load
         }
