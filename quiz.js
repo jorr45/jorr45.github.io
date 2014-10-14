@@ -34,8 +34,9 @@ jQuery(document).ready(function () {
         JSON2.recentUser = localStorage["recentUser"];
         generateNamePage();
         users=$.parseJSON(localStorage.getItem("users"));
-        scores=$.parseJSON(localStorage.getItem("scores"));
-        
+        if (localStorage.getItem("scores") != null){
+            scores=$.parseJSON(localStorage.getItem("scores"));
+        }        
 });
 
 
