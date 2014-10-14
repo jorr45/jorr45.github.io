@@ -39,7 +39,7 @@ jQuery(document).ready(function () {
         }
        
        //JSON.users=JSON.parse(localStorage["users"]);
-       JSON.scores=JSON.parse(localStorage["scores"]);
+       //JSON.scores=JSON.parse(localStorage["scores"]);
         
 });
 
