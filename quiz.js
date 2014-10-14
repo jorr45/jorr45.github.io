@@ -15,7 +15,7 @@ var questions=[{
 var title="A";
 
 function generateNamePage(){//generate name page
-    $("#questions").append('<form><h>Username: </h><input type="text" name="Name" value='+JSON.recentUser+'/><br><br><h>Password:</h><input type="text" name="Pass"/><br><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
+    $("#questions").append('<form><h>Username: </h><input type="text" name="Name" value="'+JSON.recentUser+'"/><br><br><h>Password:</h><input type="text" name="Pass"/><br><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
 }
 
 
@@ -103,6 +103,19 @@ function login(form){//user submits name
             
    
 }//login           
+
+function signup(form){
+    userName=form.elements[0].value;//get name, store it in var
+    password=form.elements[1].value; 
+    if (JSON.users.hasOwnProperty(userName)){
+            $("#wrongPW").remove();
+            $("#questions").prepend('<p id="wrongPW"><i><center>Username already taken!</center></i></p>');
+    }
+    else{
+            JSON.users[userName]=password;
+            localStorage.users=JSON.stringify(JSON.users);
+    }
+}
 
 
 function submitQuiz(form){
