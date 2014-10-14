@@ -194,8 +194,9 @@ function outputScore() {
     outputGraph(correctNumbers.length, incorrectNumbers.length);
 }
 
-$("a").on('click', "#details", function(){
+$("body").on('click', "#details", function(){
         $(".hidden").toggleSlide();
+        alert("run");
 });
 
 function outputGraph(numCorrect, numIncorrect){
