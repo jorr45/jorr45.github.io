@@ -5,48 +5,6 @@
         "givenAns": 0
     },
     {
-        "question": "How many Supreme Court justices are there?",
-        "answers": ["5", "7", "8","9"],
-        "correct": "9",
-        "givenAns": 0
-    },
-    {
-        "question": "In what year was the current Court building constructed?",
-        "answers": ["1776", "1856", "1889","1932", "1964"],
-        "correct": "1932",
-        "givenAns": 0
-    },
-    {
-        "question": "Who was the Chief Justice from 1969 to 1986?",
-        "answers": ["John Roberts", "John Marshall", "William Rehnquist", "Earl Warren", "Warren Burger"],
-        "correct": "Warren Burger",
-        "givenAns": 0
-    },
-    {
-        "question": "Which Article in the Constitution describes the powers of the judiciary?",
-        "answers": ["I", "II", "III", "IV", "V", "VI", "VII"],
-        "correct": "III",
-        "givenAns": 0
-    },
-    {
-        "question": "How many justices were on the Supreme Court at the time of its creation?",
-        "answers": ["5", "6","7", "9"],
-        "correct": "6",
-        "givenAns": 0
-    },
-    {
-        "question": "Who was the first black Supreme Court Justice?",
-        "answers": ["Thurgood Marshall", "Clarence Thomas", "Barack Obama", "Martin Luther King Jr."],
-        "correct": "Thurgood Marshall",
-        "givenAns": 0
-    },
-    {
-        "question": "Approximatley how many cases, on average, does the Supreme Court hear in a given year?",
-        "answers": ["10", "100", "500", "1000", "5000"],
-        "correct": "100",
-        "givenAns": 0
-    },
-    {
         "question": "The landmark case Madison v. Marbury most famously dealt with what topic?",
         "answers": ["Free Speech", "Interstate Commerce", "Anti-Trust Law", "Judicial Review"],
         "correct": "Judicial Review",
