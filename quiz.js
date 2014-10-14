@@ -125,7 +125,7 @@ function submitQuiz(form){
             recAnswer=form.Answer[i].value;
         }//save answer to variable
     }
-    //questions[questionNumber].givenAns=recAnswer;//save answer to JSON
+    questions[questionNumber].givenAns=recAnswer;//save answer to JSON
     sessionStorage.setItem("Q"+sessionStorage.getItem("questionNumber")+" Answer", recAnswer);//save last answer to sessionstorage
     sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
     $("#questions").remove();
@@ -154,7 +154,7 @@ function submitQuiz(form){
             scores[0][1]=userName;
     }
     var scoreReport = '';
-    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+".\\n That means you are in "+i+"th place of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
+    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+i+" of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
     
     var correctNums = '';
     for (var j=0; j<correctNumbers.length; j++){
@@ -218,7 +218,7 @@ function getAnswerNext(form, isNext) {//record answer, get next Q
             recAnswer=form.Answer[i].value;
         }//save answer to variable
     }
-    //questions[questionNumber].givenAns=recAnswer;//save answer to JSON
+    questions[questionNumber].givenAns=recAnswer;//save answer to JSON
     sessionStorage.setItem("Q"+Number(sessionStorage.getItem("questionNumber"))+" Answer", recAnswer);//save answer to sessionStorage
     if (recAnswer!=0 || isNext!=true){//if answer was submitted or previous question accessed, switch questions
         $("#questions").remove();
