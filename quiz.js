@@ -5,7 +5,7 @@ var userName="";
 var password="";
 var JSON2;
 var users;
-var scores;
+var scores[][];
 var questions=[{
         "question": "This is a TEST",
         "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
@@ -137,7 +137,7 @@ function submitQuiz(form){
             incorrectNumbers[incorrectNumbers.length]=j;//array of incorrect
         }
     }
-    if (scores.length>0){
+    if (scores!=null && scores.length>0){
             for (var i = 0; i<scores.length; i++){//place score in order
                     if (correctNumbers.length>scores[i][0]){
                             for (var k = scores.length; k>i; k--){
