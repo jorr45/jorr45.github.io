@@ -105,7 +105,7 @@ function login(form){//user submits name
 function signup(form){
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value; 
-    if (userName in users){
+    if (users!=undefined && users!=null && userName in users){
         $(".wrongPW").remove();
         $("#questions").prepend('<h class="wrongPW"><i><center>Username already taken!</center></i></h>');
     }
