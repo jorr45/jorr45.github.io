@@ -17,7 +17,7 @@ function generateNamePage(){//generate name page
     if (JSON2.recentUser === undefined){
             JSON2.recentUser = "";
     }
-    $("#questions").append('<form><h>Username: </h><input type="text" name="Name" value="'+JSON2.recentUser+'"/><br><h>Password: </h><input type="text" name="Pass"/><br><br><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
+    $("#questions").append('<form><h>Username: </h><input type="text" name="Name" value="'+JSON2.recentUser+'"/><br><h>Password: </h><input type="password" name="Pass"/><br><br><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
 }
 
 
