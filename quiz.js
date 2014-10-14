@@ -125,7 +125,7 @@ function submitQuiz(form){
             recAnswer=form.Answer[i].value;
         }//save answer to variable
     }
-    questions[questionNumber].givenAns=recAnswer;//save answer to JSON
+    questions[Number(sessionStorage.getItem("questionNumber"))].givenAns=recAnswer;//save answer to JSON
     sessionStorage.setItem("Q"+sessionStorage.getItem("questionNumber")+" Answer", recAnswer);//save last answer to sessionstorage
     sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
     $("#questions").remove();
@@ -213,13 +213,14 @@ function plotData(myColor, myData) {
 
 
 function getAnswerNext(form, isNext) {//record answer, get next Q
+    questionNumber = Number(sessionStorage.getItem("questionNumber"));
     for (var i=0; i<form.Answer.length; i++){
         if (form.Answer[i].checked){
             recAnswer=form.Answer[i].value;
         }//save answer to variable
     }
     questions[questionNumber].givenAns=recAnswer;//save answer to JSON
-    sessionStorage.setItem("Q"+Number(sessionStorage.getItem("questionNumber"))+" Answer", recAnswer);//save answer to sessionStorage
+    sessionStorage.setItem("Q"+questionNumber+" Answer", recAnswer);//save answer to sessionStorage
     if (recAnswer!=0 || isNext!=true){//if answer was submitted or previous question accessed, switch questions
         $("#questions").remove();
         if (isNext==true){//if next
