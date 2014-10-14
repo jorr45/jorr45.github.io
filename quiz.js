@@ -5,7 +5,7 @@ var userName="";
 var password="";
 var JSON2;
 var users;
-var scores;
+var scores = new Array([]);
 var questions=[{
         "question": "This is a TEST",
         "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
