@@ -139,12 +139,14 @@ function submitQuiz(form){
         }
     }
     if (scores.length>0){
-            var i;
+            var i=0;
             var k;
             while(i<scores.length){//place score in order
                     if (correctNumbers.length>scores[i][0]){
-                            for (k = scores.length; k>i; k--){
+                            k = scores.length;
+                            while (k>i){
                                     scores[k]=scores[k-1];//move all lower scores down 1
+                                    k--;
                             }
                             break;
                     }
@@ -155,8 +157,8 @@ function submitQuiz(form){
                     scores[scores.length][1]=userName;
             }
             else{
-                  //  scores[i][0]=correctNumbers.length;
-                  //  scores[i][1]=userName;
+                    scores[i][0]=correctNumbers.length;
+                    scores[i][1]=userName;
             }
     }
     else{ //if nothing placed yet
