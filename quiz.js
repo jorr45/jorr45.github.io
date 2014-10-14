@@ -1,6 +1,6 @@
-//if (sessionStorage.getItem("questionNumber")===null || sessionStorage.getItem("questionNumber")===undefined){
+if (sessionStorage.getItem("questionNumber")===null || sessionStorage.getItem("questionNumber")===undefined){
         sessionStorage.setItem("questionNumber", -1);
-//}
+}
 var recAnswer=0;
 var checked="";
 var userName="";
@@ -38,6 +38,8 @@ jQuery(document).ready(function () {
                 generateNamePage();//generate name page on page load)
         }
        
+       JSON.users=JSON.parse(localStorage["users"]);
+       JSON.scores=JSON.parse(localStorage["scores"]);
         
 });
 
@@ -75,13 +77,13 @@ function generateQ() {//generates next question
 function login(form){//user submits name
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value;
-   /* if (JSON.users.has(username)){
-            if (JSON.users.username === password){*/
+    if (JSON.users.has(username)){
+            if (JSON.users.username === password){
                 $("#questions").remove();//remove name area
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);//go to next (first) question
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
                 $(".Question").fadeIn();//fade question in    
-           /* }
+            }
             else{
                 $("#wrongPW").remove();
                 $("#questions").prepend('<p id="wrongPW"><i><center>Incorrect username/password combination!</center></i></p>')
@@ -94,7 +96,7 @@ function login(form){//user submits name
         $("#questions").prepend('<p id="wrongPW"><i><center>Cannot find username in database. Please sign up before attempting to log in.</center></i></p>')
         $("#wrongPW").hide();
         $("#wrongPW").fadeIn();
-    }*/
+    }
             
    
 }//login           
