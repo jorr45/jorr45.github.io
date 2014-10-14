@@ -28,13 +28,8 @@ jQuery(document).ready(function () {
              $("#numCorrect").text(title);
          });
        
-       
-        if (sessionStorage.getItem("questionNumber")==-1){
-  
-                generateNamePage();//generate name page on page load
-        }
-        
-        else{
+        generateNamePage();//generate name page on page load
+        if (sessionStorage.getItem("questionNumber")>-1){
                 generateQ();
         }
        
