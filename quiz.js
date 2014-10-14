@@ -155,8 +155,8 @@ function submitQuiz(form){
                     scores[scores.length][1]=userName;
             }
             else{
-                    scores[i][0]=correctNumbers.length;
-                    scores[i][1]=userName;
+                  //  scores[i][0]=correctNumbers.length;
+                  //  scores[i][1]=userName;
             }
     }
     else{ //if nothing placed yet
