@@ -116,7 +116,7 @@ function signup(form){
     }
     else{
             JSON.users.userName=password;
-            localStorage.users=JSON.stringify(JSON.users);
+            JSON.users=JSON.stringify(JSON.users);
     }
 }
 
