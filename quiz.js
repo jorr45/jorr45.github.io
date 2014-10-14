@@ -78,8 +78,8 @@ function login(form){//user submits name
     JSON.recentUser = localStorage["recentUser"];
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value;
-    if (JSON.users.has(username)){
-            if (JSON.users.username === password){
+    if (JSON.users.has(userName)){
+            if (JSON.users.userName === password){
                 if (JSON.recentUser != userName){
                             for (var i =0; i<JSON.questions.length; i++){
                                     sessionStorage.removeItem("Q"+i+" Answer");//remove stored answers if different user
