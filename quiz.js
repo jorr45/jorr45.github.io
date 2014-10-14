@@ -140,17 +140,17 @@ function submitQuiz(form){
     }
     var i=0;
     if (scores!=null && scores!= undefined && scores.length>0){
-            var k=scores.length-1;
+            var k=scores.length;
             for (i=0; i<scores.length; i++){//place score in order
                     if (correctNumbers.length>=scores[i][0]){
-                            for (k = scores.length-1; k>=i; k--){
+                            for (k = scores.length; k>=i; k--){
                                     scores[k]=scores[k-1];//move all lower scores down 1
                                     console.log("k loop");
                             }
                             break;
                     }
             }
-            if (k==scores.length-1){//score not greater than any on leaderboard
+            if (k==scores.length){//score not greater than any on leaderboard
                     scores[scores.length]=[correctNumbers.length, userName];
                     console.log ("k unchanged");
             }
