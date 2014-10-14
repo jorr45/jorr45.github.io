@@ -116,7 +116,7 @@ function signup(form){
     }
     else{
             JSON.users.userName=password;
-            localStorage.JSON=JSON.stringify(JSON);
+            localStorage.JSON=jQuery.parseJSON(JSON);
     }
 }
 
