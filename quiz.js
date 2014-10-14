@@ -153,6 +153,8 @@ function submitQuiz(form){
             scores[0][0]=correctNumbers.length;
             scores[0][1]=userName;
     }
+    localStorage.setItem("scores", JSON.stringify(scores));
+    
     var scoreReport = '';
     scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+i+" of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
     
