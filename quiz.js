@@ -167,7 +167,7 @@ function submitQuiz(form){
     
     var scoreReport = '';
     var place = 1+i;
-    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+place+" of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
+    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+place+" of users who took this quiz on this browser, out of "+scores.length+" total browser attempts.";
     
     var correctNums = '';
     for (var j=0; j<correctNumbers.length; j++){
