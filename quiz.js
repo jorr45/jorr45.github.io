@@ -4,7 +4,7 @@ var checked="";
 var userName="";
 var password="";
 var JSON2;
-var users=new Array();
+var users=new Object();
 var scores=new Array();
 var questions=[{
         "question": "This is a TEST",
@@ -110,7 +110,7 @@ function signup(form){
             $("#questions").prepend('<h class="wrongPW"><i><center>Username already taken!</center></i></h>');
     }
     else{
-            users[userName]=password;
+            users.userName=password;
             var temp = users;
             localStorage.setItem("users", JSON.stringify(temp));
             login(form);
