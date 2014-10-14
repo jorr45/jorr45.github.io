@@ -153,23 +153,19 @@ function outputScore() {
                     if (correctNumbers.length>=scores[i][0]){
                             for (k = scores.length; k>=i; k--){
                                     scores[k]=scores[k-1];//move all lower scores down 1
-                                    console.log("k loop");
                             }
                             break;
                     }
             }
             if (k==scores.length){//score not greater than any on leaderboard
                     scores[scores.length]=[correctNumbers.length, userName];
-                    console.log ("k unchanged");
             }
             else{
                     scores[i]=[correctNumbers.length, userName];
-                    console.log ("score i placed");
             }
     }
     else{ //if nothing placed yet
             scores.push([correctNumbers.length, userName]);
-            console.log("scores 0 placed");
     }
     localStorage.setItem("scores", JSON.stringify(scores));
     
@@ -194,7 +190,7 @@ function outputScore() {
     outputGraph(correctNumbers.length, incorrectNumbers.length);
 }
 
-$("body").on('click', "#details", function(){
+$("body").on('click', '#details', function(){
         $(".hidden").toggleSlide();
         alert("run");
 });
