@@ -2,6 +2,16 @@
     display: none;
 }
 
+.hidden {
+	display: none;
+}
+
+th {
+	background-color: black;
+	color: white;
+	text-align: center;
+}
+
 label{
     display: inline-block;
     float: center;
