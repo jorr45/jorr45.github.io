@@ -138,7 +138,7 @@ function submitQuiz(form){
             incorrectNumbers[incorrectNumbers.length]=j;//array of incorrect
         }
     }
-    if (scores.length>0){
+    if (scores!=null && scores!= undefined && scores.length>0){
             var i=0;
             var k;
             for (i=0; i<scores.length; i++){//place score in order
@@ -160,7 +160,7 @@ function submitQuiz(form){
             }
     }
     else{ //if nothing placed yet
-            scores[0]=[correctNumbers.length, userName];
+            scores.push([correctNumbers.length, userName]);
             console.log("scores 0 placed");
     }
     localStorage.setItem("scores", JSON.stringify(scores));
