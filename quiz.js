@@ -75,16 +75,18 @@ function generateQ() {//generates next question
 
 
 function login(form){//user submits name
+    JSON.recentUser = localStorage["recentUser"];
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value;
     if (JSON.users.has(username)){
             if (JSON.users.username === password){
-                if (JSON.recent_user != userName){
+                if (JSON.recentUser != userName){
                             for (var i =0; i<JSON.questions.length; i++){
                                     sessionStorage.removeItem("Q"+i+" Answer");//remove stored answers if different user
                             }
                 }
-                JSON.recent_user = userName;//save new user as recent one
+                JSON.recentUser = userName;//save new user as recent one
+                localStorage["recentUser"]=userName;
                 $("#questions").remove();//remove name area
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);//go to next (first) question
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
