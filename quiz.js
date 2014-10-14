@@ -3,7 +3,7 @@ var recAnswer=0;
 var checked="";
 var userName="";
 var password="";
-var JSON;
+var JSON2;
 var questions=[{
         "question": "This is a TEST",
         "answers": ["Miranda v. Arizona", "Roe v. Wade", "Gonzalez v. Carhart", "Planned Parenthood v. Casey"],
@@ -13,8 +13,8 @@ var questions=[{
 var title="A";
 
 function generateNamePage(){//generate name page
-    if (JSON.recentUser === undefined){
-            JSON.recentUser = "";
+    if (JSON2.recentUser === undefined){
+            JSON2.recentUser = "";
     }
     $("#questions").append('<form><h>Username: </h><input type="text" name="Name" value="'+JSON.recentUser+'"/><br><h>Password: </h><input type="text" name="Pass"/><br><br><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
 }
@@ -23,16 +23,16 @@ function generateNamePage(){//generate name page
 jQuery(document).ready(function () {
          $.getJSON("quiz.json", function( data ) {
 
-               JSON = data;
-                questions=JSON.questions;
-                title=JSON.title;
+               JSON2 = data;
+                questions=JSON2.questions;
+                title=JSON2.title;
              $("#numCorrect").text(title);
          });
        
-        JSON.recentUser = localStorage["recentUser"];
+        JSON2.recentUser = localStorage["recentUser"];
         generateNamePage();
-        JSON.users=jQuery.parseJSON(localStorage["users"]);
-       //JSON.scores=JSON.parse(localStorage["scores"]);
+        JSON2.users=jQuery.parseJSON(localStorage["users"]);
+       //JSON2.scores=JSON.parse(localStorage["scores"]);
         
 });
 
@@ -70,14 +70,14 @@ function generateQ() {//generates next question
 function login(form){//user submits name
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value;
-    if (JSON.users.hasOwnProperty(userName)){
-            if (JSON.users[userName] == password){
-                if (JSON.recentUser != userName){
-                            for (var i =0; i<JSON.questions.length; i++){
+    if (JSON2.users.hasOwnProperty(userName)){
+            if (JSON2.users[userName] == password){
+                if (JSON2.recentUser != userName){
+                            for (var i =0; i<JSON2.questions.length; i++){
                                     sessionStorage.removeItem("Q"+i+" Answer");//remove stored answers if different user
                             }
                 }
-                JSON.recentUser = userName;//save new user as recent one
+                JSON2.recentUser = userName;//save new user as recent one
                 localStorage["recentUser"]=userName;
                 $("#questions").remove();//remove name area
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);//go to next (first) question
@@ -100,13 +100,13 @@ function login(form){//user submits name
 function signup(form){
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value; 
-    if (JSON.users.hasOwnProperty(userName)){
+    if (JSON2.users.hasOwnProperty(userName)){
             $(".wrongPW").remove();
             $("#questions").prepend('<h class="wrongPW"><i><center>Username already taken!</center></i></h>');
     }
     else{
-            JSON.users[userName]=password;
-            var temp = JSON.users;
+            JSON2.users[userName]=password;
+            var temp = JSON2.users;
             localStorage.setItem=("users", JSON.stringify(temp));
     }
 }
