@@ -28,11 +28,14 @@ jQuery(document).ready(function () {
              $("#numCorrect").text(title);
          });
        
-        generateNamePage();//generate name page on page load
+        
         if (sessionStorage.getItem("questionNumber")>-1){
                 $("#questions").remove();
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");
                 $(".Question").fadeIn();
+        }
+        else {
+                generateNamePage();//generate name page on page load)
         }
        
         
