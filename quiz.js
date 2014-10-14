@@ -139,12 +139,22 @@ function submitQuiz(form){
         }
     }
     if (scores!=null && scores.length>0){
-            for (var i = 0; i<scores.length; i++){//place score in order
+            var i;
+            var k;
+            for (i = 0; i<scores.length; i++){//place score in order
                     if (correctNumbers.length>scores[i][0]){
-                            for (var k = scores.length; k>i; k--){
-                                    scores[k]=scores[k-1];//move all scores down 1
+                            for (k = scores.length; k>i; k--){
+                                    scores[k]=scores[k-1];//move all lower scores down 1
                             }
+                            break;
                     }
+                    
+            }
+            if (k==0){//score not greater than any on leaderboard
+                    scores[scores.length][0]=correctNumbers.length;
+                    scores[scores.length][1]=userName;
+            }
+            else{
                     scores[i][0]=correctNumbers.length;
                     scores[i][1]=userName;
             }
