@@ -34,7 +34,7 @@ jQuery(document).ready(function () {
         JSON2.recentUser = localStorage["recentUser"];
         generateNamePage();
         users=$.parseJSON(localStorage.getItem("users"));
-        if (localStorage.getItem("scores") != null){
+        if (localStorage.getItem("scores") != null && localStorage.getItem("scores")!=undefined){
             scores=$.parseJSON(localStorage.getItem("scores"));
         }        
 });
@@ -138,7 +138,7 @@ function submitQuiz(form){
             incorrectNumbers[incorrectNumbers.length]=j;//array of incorrect
         }
     }
-    if (scores!=null && scores.length>0){
+    if (scores.length>0){
             var i;
             var k;
             for (i = 0; i<scores.length; i++){//place score in order
