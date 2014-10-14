@@ -6,6 +6,10 @@
 	
 }
 
+table{
+	border: 2px;
+}
+
 th {
 	background-color: black;
 	color: white;
