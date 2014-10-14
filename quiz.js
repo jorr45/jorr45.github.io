@@ -32,14 +32,14 @@ jQuery(document).ready(function () {
          });
        
         JSON.recentUser = localStorage["recentUser"];
-        if (sessionStorage.getItem("questionNumber")>-1){
+        /*if (sessionStorage.getItem("questionNumber")>-1){
                 $("#questions").remove();
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");
                 $(".Question").fadeIn();
         }
-        else {
+        else {*/
                 generateNamePage();//generate name page on page load)
-        }
+        //}
        
        //JSON.users=JSON.parse(localStorage["users"]);
        //JSON.scores=JSON.parse(localStorage["scores"]);
@@ -81,7 +81,7 @@ function login(form){//user submits name
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value;
     if (JSON.users.hasOwnProperty(userName)){
-            if (JSON.users[userName] === password){
+            if (JSON.users[userName] == password){
                 if (JSON.recentUser != userName){
                             for (var i =0; i<JSON.questions.length; i++){
                                     sessionStorage.removeItem("Q"+i+" Answer");//remove stored answers if different user
