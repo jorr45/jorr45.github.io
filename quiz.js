@@ -148,12 +148,13 @@ function submitQuiz(form){
                     scores[i][1]=userName;
             }
     }
-    var scoreReport = '';
-    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+".\\n That means you are in "+i+"th place of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
     else{ //if nothing placed yet
             scores[0][0]=correctNumbers.length;
             scores[0][1]=userName;
     }
+    var scoreReport = '';
+    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+".\\n That means you are in "+i+"th place of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
+    
     var correctNums = '';
     for (var j=0; j<correctNumbers.length; j++){
         correctNums+="<a title='Question: "+questions[correctNumbers[j]].question + "\nAnswer: "  +questions[correctNumbers[j]].correct+"'>#"+correctNumbers[j]+1+"</a> ";//create tooltip correct
