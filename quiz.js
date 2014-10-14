@@ -30,7 +30,9 @@ jQuery(document).ready(function () {
        
         generateNamePage();//generate name page on page load
         if (sessionStorage.getItem("questionNumber")>-1){
-                generateQ();
+                $("#questions").remove();
+                $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");
+                $(".Question").fadeIn();
         }
        
         
