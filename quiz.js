@@ -184,8 +184,8 @@ function outputScore() {
     for (var j=0; j<incorrectNumbers.length; j++){
         incorrectNums+="<a title='Question: "+questions[incorrectNumbers[j]].question + "\nYour Answer: " +questions[incorrectNumbers[j]].givenAns + "\nCorrect Answer: "  +questions[incorrectNumbers[j]].correct+"'>#"+Number(incorrectNumbers[j]+1)+"</a>  ";//create tooltip incorrect
     }
-    
-    $("#numCorrect").after("<h4>Great job, "+userName+"!" + scoreReport+"</h4><br><input type='button' id='details' value='Show/Hide Details'><table class='hidden'><tr><th>Rank</th><th>Username</th><th>Score</th></tr>"+moreDetails+"</table><br><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font>");//display correct and incorrect answers
+    //inject HTML
+    $("#numCorrect").after("<h4>Great job, "+userName+"!" + scoreReport+"</h4><input type='button' id='details' value='Show/Hide Details'><br><table class='hidden'><tr><th>Rank</th><th>Username</th><th>Score</th></tr>"+moreDetails+"</table><br><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font>");//display correct and incorrect answers
     $("#details").on('click', function(){
         $(".hidden").slideToggle();
 });
