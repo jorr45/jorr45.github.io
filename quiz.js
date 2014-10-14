@@ -152,7 +152,7 @@ function submitQuiz(form){
             }
             if (k==scores.length-1){//score not greater than any on leaderboard
                     scores[scores.length]=[correctNumbers.length, userName];
-                    console.log ("k==0");
+                    console.log ("k unchanged");
             }
             else{
                     scores[i]=[correctNumbers.length, userName];
