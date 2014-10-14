@@ -116,6 +116,7 @@ function signup(form){
                     localStorage.setItem("users", JSON.stringify(temp));
                     login(form);
             }
+    }
     else{
            alert("Please choose a password that is at least three characters long!");
     }
