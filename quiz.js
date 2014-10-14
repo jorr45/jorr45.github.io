@@ -15,7 +15,7 @@ var questions=[{
 var title="A";
 
 function generateNamePage(){//generate name page
-    $("#questions").append('<form><h>Username: </h><input type="text" name="Name"/><br><input type="text" name="Pass"/><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
+    $("#questions").append('<form><h>Username: </h><input type="text" name="Name" value='+JSON.recentUser+'/><br><br><h>Password:</h><input type="text" name="Pass"/><br><input type="button" value="Login" onClick = "login(this.form)"/><input type="button" value="Sign Up" onClick = "signup(this.form)"/></form>');
 }
 
 
@@ -28,7 +28,7 @@ jQuery(document).ready(function () {
              $("#numCorrect").text(title);
          });
        
-        
+        JSON.recentUser = localStorage["recentUser"];
         if (sessionStorage.getItem("questionNumber")>-1){
                 $("#questions").remove();
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");
@@ -75,7 +75,6 @@ function generateQ() {//generates next question
 
 
 function login(form){//user submits name
-    JSON.recentUser = localStorage["recentUser"];
     userName=form.elements[0].value;//get name, store it in var
     password=form.elements[1].value;
     if (JSON.users.hasOwnProperty(userName)){
