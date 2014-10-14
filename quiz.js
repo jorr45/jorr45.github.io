@@ -1,6 +1,6 @@
-if (sessionStorage.getItem("questionNumber")===null || sessionStorage.getItem("questionNumber")===undefined){
+//if (sessionStorage.getItem("questionNumber")===null || sessionStorage.getItem("questionNumber")===undefined){
         sessionStorage.setItem("questionNumber", -1);
-}
+//}
 var recAnswer=0;
 var checked="";
 var userName="";
