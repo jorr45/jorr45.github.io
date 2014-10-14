@@ -153,16 +153,14 @@ function submitQuiz(form){
                     i++;
             }
             if (k==0){//score not greater than any on leaderboard
-                    scores[scores.length][0]=correctNumbers.length;
-                    scores[scores.length][1]=userName;
+                    scores[scores.length]=[correctNumbers.length, userName];
             }
             else{
                     scores[i]=[correctNumbers.length, userName];
             }
     }
     else{ //if nothing placed yet
-            scores[0][0]=correctNumbers.length;
-            scores[0][1]=userName;
+            scores[0]=[correctNumbers.length, userName];
     }
     localStorage.setItem("scores", JSON.stringify(scores));
     
