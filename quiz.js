@@ -190,7 +190,7 @@ function outputScore() {
     outputGraph(correctNumbers.length, incorrectNumbers.length);
 }
 
-$("body").on('click', '#details', function(){
+$("#details").click(function(){
         $(".hidden").slideToggle();
         alert("run");
 });
