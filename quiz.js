@@ -147,7 +147,7 @@ function submitQuiz(form){
                             while (k>i){
                                     scores[k]=scores[k-1];//move all lower scores down 1
                                     k--;
-                                    alert("k loop");
+                                    console.log("k loop");
                             }
                             break;
                     }
@@ -155,16 +155,16 @@ function submitQuiz(form){
             }
             if (k==0){//score not greater than any on leaderboard
                     scores[scores.length]=[correctNumbers.length, userName];
-                    alert ("k==0");
+                    console.log ("k==0");
             }
             else{
                     scores[i]=[correctNumbers.length, userName];
-                    alert ("score i placed");
+                    console.log ("score i placed");
             }
     }
     else{ //if nothing placed yet
             scores[0]=[correctNumbers.length, userName];
-            alert("scores 0 placed");
+            console.log("scores 0 placed");
     }
     localStorage.setItem("scores", JSON.stringify(scores));
     
