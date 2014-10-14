@@ -165,11 +165,12 @@ function submitQuiz(form){
     localStorage.setItem("scores", JSON.stringify(scores));
     
     var scoreReport = '';
-    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+(i+1)+" of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
+    var place = 1+i;
+    scoreReport += " Your score was " + correctNumbers.length + "/"+questions.length+". That means you are in place #"+place+" of users who took this quiz on this browser, out of "+scores.length+" total attempts!";
     
     var correctNums = '';
     for (var j=0; j<correctNumbers.length; j++){
-        correctNums+="<a title='Question: "+questions[correctNumbers[j]].question + "\nAnswer: "  +questions[correctNumbers[j]].correct+"'>#"+correctNumbers[j]+1+"</a> ";//create tooltip correct
+        correctNums+="<a title='Question: "+questions[correctNumbers[j]].question + "\nAnswer: "  +questions[correctNumbers[j]].correct+"'>#"+Number(correctNumbers[j]+1)+"</a> ";//create tooltip correct
     }
     var incorrectNums = '';
     for (var j=0; j<incorrectNumbers.length; j++){
