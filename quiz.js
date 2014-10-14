@@ -189,7 +189,7 @@ function outputScore() {
     
     $("#numCorrect").after("<div id='questions'><h4>Great job, "+userName+"!" + scoreReport+"</h4><p><i>(Hover over question number to see the question, your answer, and the correct answer...</i></p><font color='#11EE11'><h3>Questions Answered Correctly ("+correctNumbers.length+" total, " + Math.round(correctNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+correctNums +"</h3></font><font color='#D95B43'><h3>Questions Answered Incorrectly ("+incorrectNumbers.length+" total, " + Math.round(incorrectNumbers.length/(correctNumbers.length+incorrectNumbers.length)*100) + "%):<br/> "+incorrectNums +"</h3></font></div>");//display correct and incorrect answers
 
-    outputGraph(correctNumbers.length, incorrectNumbers.length)
+    outputGraph(correctNumbers.length, incorrectNumbers.length);
 }
 
 function outputGraph(var numCorrect, var numIncorrect){
