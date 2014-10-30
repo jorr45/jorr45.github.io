@@ -139,6 +139,7 @@ function submitQuiz(form){
     sessionStorage.setItem("Q"+sessionStorage.getItem("questionNumber")+" Answer", recAnswer);//save last answer to sessionstorage
     sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
     $("#questions").remove();
+    $("#image").remove();
     
     outputScore();
 
