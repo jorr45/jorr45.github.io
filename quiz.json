@@ -31,7 +31,7 @@
         "answers": ["I", "II", "III", "IV", "V", "VI", "VII"],
         "correct": "III",
         "givenAns": 0,
-        "tag": "Constitution,United,States"
+        "tag": "Constitution,document"
     },
     {
         "question": "How many justices were on the Supreme Court at the time of its creation?",
