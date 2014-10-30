@@ -10,7 +10,7 @@
         "answers": ["5", "7", "8","9"],
         "correct": "9",
         "givenAns": 0,
-        "tag": "Supreme,Court,Justices"
+        "tag": "Supreme,Court,Justices,United,States"
     },
     {
         "question": "In what year was the current Court building constructed?",
@@ -31,7 +31,7 @@
         "answers": ["I", "II", "III", "IV", "V", "VI", "VII"],
         "correct": "III",
         "givenAns": 0,
-        "tag": "Constitution"
+        "tag": "Constitution,United,States"
     },
     {
         "question": "How many justices were on the Supreme Court at the time of its creation?",
