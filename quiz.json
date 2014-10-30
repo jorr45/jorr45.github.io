@@ -31,14 +31,14 @@
         "answers": ["I", "II", "III", "IV", "V", "VI", "VII"],
         "correct": "III",
         "givenAns": 0,
-        "tag": "Constitution,United,States"
+        "tag": "Constitution"
     },
     {
         "question": "How many justices were on the Supreme Court at the time of its creation?",
         "answers": ["5", "6","7", "9"],
         "correct": "6",
         "givenAns": 0,
-        "tag": "Supreme,Court,1790"
+        "tag": "Supreme,Court,old"
     },
     {
         "question": "Who was the first black Supreme Court Justice?",
