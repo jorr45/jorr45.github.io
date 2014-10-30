@@ -99,6 +99,7 @@ function login(form){//user submits name
                 localStorage["recentUser"]=userName;
                 $("#questions").remove();//remove name area
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);//go to next (first) question
+                console.log(urlList[Number(sessionStorage.getItem("questionNumber"))]);
                 $("#numCorrect").after("<br/><div id='image' class='Question'><img src='"+urlList[Number(sessionStorage.getItem("questionNumber"))]+"' alt='Image'></div>");
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
                 $(".Question").fadeIn();//fade question in    
