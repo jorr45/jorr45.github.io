@@ -45,7 +45,7 @@
         "answers": ["Thurgood Marshall", "Clarence Thomas", "Barack Obama", "Martin Luther King Jr."],
         "correct": "Thurgood Marshall",
         "givenAns": 0,
-        "tag": "Thurgood,Marshall"
+        "tag": "Thurgood,Marshall,justice,court"
     },
     {
         "question": "Approximatley how many cases, on average, does the Supreme Court hear in a given year?",
