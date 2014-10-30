@@ -10,7 +10,7 @@
         "answers": ["5", "7", "8","9"],
         "correct": "9",
         "givenAns": 0,
-        "tag": "Supreme,Court,Justices,Roberts"
+        "tag": "Supreme,Court,Justices"
     },
     {
         "question": "In what year was the current Court building constructed?",
@@ -24,7 +24,7 @@
         "answers": ["John Roberts", "John Marshall", "William Rehnquist", "Earl Warren", "Warren Burger"],
         "correct": "Warren Burger",
         "givenAns": 0,
-        "tag": "Warren,Burger,Chief,Justice"
+        "tag": "Warren,Burger"
     },
     {
         "question": "Which Article in the Constitution describes the powers of the judiciary?",
@@ -38,7 +38,7 @@
         "answers": ["5", "6","7", "9"],
         "correct": "6",
         "givenAns": 0,
-        "tag": "Supreme,Court,1790,United,States"
+        "tag": "Supreme,Court,1790"
     },
     {
         "question": "Who was the first black Supreme Court Justice?",
@@ -52,7 +52,7 @@
         "answers": ["10", "100", "500", "1000", "5000"],
         "correct": "100",
         "givenAns": 0,
-        "tag": "Supreme,Court,case,United,States"
+        "tag": "Supreme,Court,case"
     },
     {
         "question": "The landmark case Marbury v. Madison most famously dealt with what topic?",
