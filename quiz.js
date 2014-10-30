@@ -32,11 +32,12 @@ jQuery(document).ready(function () {
                 title=JSON2.title;
              $("#numCorrect").text(title);
               for (var i = 0; i<JSON2.questions.length; i++){
-                flickrJSON=$.getJSON("http://api.flickr.com/services/rest/?&amp;method=flickr.photos.search&amp;api_key=929b35554adaeba34d52745f880a6a66&amp;sort=relevance&amp;format=json&amp;tags="+JSON2.questions[i].tag)
-                var photo = flickrJSON.photos.photo[0];
-                urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
-         }
-         });
+                flickrJSON=$.getJSON("http://api.flickr.com/services/rest/?&amp;method=flickr.photos.search&amp;api_key=929b35554adaeba34d52745f880a6a66&amp;sort=relevance&amp;format=json&amp;tags="+JSON2.questions[i].tag, function(data){
+                        var photo = flickrJSON.photos.photo[0];
+                        urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
+                });
+              }
+        });
          
        
         JSON2.recentUser = localStorage["recentUser"];
