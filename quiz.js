@@ -57,7 +57,7 @@ function generateQ() {//generates next question
         else {
             checked="";
         }
-        inputs += '<input type="radio" name="Answer" value="' + questions[questionNumber].answers[j]+'" '+checked+'/><label>' + questions[questionNumber].answers[j] + '</label><br/>';
+        inputs += '<label><input type="radio" name="Answer" value="' + questions[questionNumber].answers[j]+'" '+checked+'/>' + questions[questionNumber].answers[j] + '</label><br/>';
         j++;
     }//generate inputs
     var stdForm = '<form><h>' + questions[questionNumber].question+'</h></center><br/><br/>' + inputs+'<center><br/>';//generate question + inputs
