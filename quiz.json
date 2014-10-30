@@ -52,7 +52,7 @@
         "answers": ["10", "100", "500", "1000", "5000"],
         "correct": "100",
         "givenAns": 0,
-        "tag": "Supreme,Court,oral,argument"
+        "tag": "oral,argument"
     },
     {
         "question": "The landmark case Marbury v. Madison most famously dealt with what topic?",
