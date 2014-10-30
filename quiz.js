@@ -35,9 +35,10 @@ jQuery(document).ready(function () {
                                 flickrJSON=data;
                                 var photo = flickrJSON.photos.photo[0];
                                 JSON2.urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
-                                console.log(JSON2.urlList[i]);
+                                
                         
                         });
+                        console.log(JSON2.urlList[0]);
               }
         });
          
@@ -98,7 +99,7 @@ function login(form){//user submits name
                 $("#questions").remove();//remove name area
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);//go to next (first) question
                 console.log(JSON2.urlList[0]);
-                $("#numCorrect").after("<br/><div id='image' class='Question'><img src='"+/*JSON2.urlList[Number(sessionStorage.getItem("questionNumber"))]*/"http://www.joomlaworks.net/images/demos/galleries/abstract/7.jpg"+"' alt='Image'></div>");
+                $("#numCorrect").after("<br/><div id='image' class='Question'><img src='"+JSON2.urlList[Number(sessionStorage.getItem("questionNumber"))]+"' alt='Image'></div>");
                 $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
                 $(".Question").fadeIn();//fade question in    
             }//rigght pw
