@@ -31,6 +31,11 @@ jQuery(document).ready(function () {
                 questions=JSON2.questions;
                 title=JSON2.title;
              $("#numCorrect").text(title);
+              for (var i = 0; i<JSON2.questions.length; i++){
+                flickrJSON=$.getJSON("http://api.flickr.com/services/rest/?&amp;method=flickr.photos.search&amp;api_key=929b35554adaeba34d52745f880a6a66&amp;sort=relevance&amp;format=json&amp;tags="+JSON2.questions[i].tag)
+                var photo = flickrJSON.photos.photo[0];
+                urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
+         }
          });
          
        
@@ -42,11 +47,7 @@ jQuery(document).ready(function () {
         if (localStorage.getItem("scores") != null && localStorage.getItem("scores")!=undefined){
             scores=$.parseJSON(localStorage.getItem("scores"));//get scores
         }
-        for (var i = 0; i<10; i++){
-                flickrJSON=$.getJSON("http://api.flickr.com/services/rest/?&amp;method=flickr.photos.search&amp;api_key=929b35554adaeba34d52745f880a6a66&amp;sort=relevance&amp;format=json&amp;tags="+JSON2.questions[i].tag)
-                var photo = flickrJSON.photos.photo[0];
-                urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
-         }
+       
 });
 
 
