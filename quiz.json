@@ -66,7 +66,7 @@
         "answers": ["Roger Taney", "Samuel Chase", "Louis Brandeis", "Harold Blackmun"],
         "correct": "Samuel Chase",
         "givenAns": 0,
-        "tag": "trial,court"
+        "tag": "trial,defendant"
     }
 ],
         "title": "Supreme Court Quiz",
