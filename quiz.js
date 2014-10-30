@@ -32,27 +32,12 @@ jQuery(document).ready(function () {
                 title=JSON2.title;
                 $("#numCorrect").text(title);
                 for (var i = 0; i<JSON2.questions.length; i++){
-                        console.log(i);
-                        console.log("https://api.flickr.com/services/rest/?\u0026method=flickr.photos.search\u0026api_key=929b35554adaeba34d52745f880a6a66\u0026sort=relevance\u0026format=json\u0026nojsoncallback=1\u0026tags="+JSON2.questions[i].tag);
                         flickrJSON=$.getJSON("https://api.flickr.com/services/rest/?\u0026method=flickr.photos.search\u0026api_key=929b35554adaeba34d52745f880a6a66\u0026sort=relevance\u0026format=json\u0026nojsoncallback=1\u0026per_page=1\u0026tags=supreme,court"/*+JSON2.questions[i].tag*/, function(data){
-                                console.log(i+"infunc");
                                 flickrJSON=data;
                                 var photo = flickrJSON.photos.photo[0];
                                 urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
                                 console.log(urlList[i]);
                         
-                        })
-                        .done(function(){
-                                console.log("done");
-                        })
-                        .fail(function(){
-                                console.log("fail");
-                        })
-                        .success(function(){
-                                console.log("success");
-                        })
-                        .always(function(){
-                                console.log("always");
                         });
               }
         });
