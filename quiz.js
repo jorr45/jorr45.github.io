@@ -263,9 +263,11 @@ function getAnswerNext(form, isNext) {//record answer, get next Q
         $("#image").remove();
         if (isNext==true){//if next
                  sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
+                     questionNumber = Number(sessionStorage.getItem("questionNumber"));
         }
         else{//if previous
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))-1);
+                    questionNumber = Number(sessionStorage.getItem("questionNumber"));
         }
         flickrJSON=$.getJSON("https://api.flickr.com/services/rest/?\u0026method=flickr.photos.search\u0026api_key=929b35554adaeba34d52745f880a6a66\u0026sort=relevance\u0026format=json\u0026nojsoncallback=1\u0026tag_mode=all\u0026per_page=1\u0026tags="+JSON2.questions[questionNumber].tag, function(data){
                                 flickrJSON=data;
