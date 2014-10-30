@@ -267,9 +267,15 @@ function getAnswerNext(form, isNext) {//record answer, get next Q
         else{//if previous
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))-1);
         }
-        $("#numCorrect").after("<br/><div id='image' class='Question'><img src='"+JSON2.urlList[questionNumber]+"' alt='Image'></div>");
-        $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");
-        $(".Question").fadeIn();
+        flickrJSON=$.getJSON("https://api.flickr.com/services/rest/?\u0026method=flickr.photos.search\u0026api_key=929b35554adaeba34d52745f880a6a66\u0026sort=relevance\u0026format=json\u0026nojsoncallback=1\u0026tag_mode=all\u0026per_page=1\u0026tags="+JSON2.questions[questionNumber].tag, function(data){
+                                flickrJSON=data;
+                                var photo = flickrJSON.photos.photo[0];
+                                JSON2.urlList[questionNumber]=("https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg");
+                                console.log("https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg");
+                                $("#numCorrect").after("<br/><div id='image' class='Question'><img src='"+JSON2.urlList[questionNumber]+"' alt='Image'></div>");
+                                $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");//add question to HTML
+                                $(".Question").fadeIn();//fade question in    
+        });
     }
     recAnswer=0;
 }//getAnswerNext
