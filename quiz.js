@@ -41,7 +41,19 @@ jQuery(document).ready(function () {
                                 urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
                                 console.log(urlList[i]);
                         
-                        });
+                        })
+                        .done(function{
+                                console.log("done");
+                        })
+                        .fail(function{
+                                console.log("fail");
+                        })
+                        .success(function{
+                                console.log("success");
+                        })
+                        .always(function{
+                                console.log("always");
+                        })
               }
         });
          
@@ -266,7 +278,7 @@ function getAnswerNext(form, isNext) {//record answer, get next Q
     sessionStorage.setItem("Q"+questionNumber+" Answer", recAnswer);//save answer to sessionStorage
     if (recAnswer!=0 || isNext!=true){//if answer was submitted or previous question accessed, switch questions
         $("#questions").remove();
-        $("image").remove();
+        $("#image").remove();
         if (isNext==true){//if next
                  sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
         }
