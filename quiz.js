@@ -4,6 +4,8 @@ var checked="";
 var userName="";
 var password="";
 var JSON2;
+var flickrJSON;
+var urlList;
 var users={};
 var scores=new Array();
 var questions=[{
@@ -30,6 +32,11 @@ jQuery(document).ready(function () {
                 title=JSON2.title;
              $("#numCorrect").text(title);
          });
+         for (var i = 0; i<JSON2.questions.length; i++){
+                flickrJSON=$.getJSON("http://api.flickr.com/services/rest/?&amp;method=flickr.photos.search&amp;api_key=929b35554adaeba34d52745f880a6a66&amp;sort=relevance&amp;format=json&amp;tags="+JSON2.questions[i].tag)
+                var photo = flickrJSON.photos.photo[0];
+                urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg");
+         }
        
         JSON2.recentUser = localStorage["recentUser"];
         generateNamePage();
@@ -249,12 +256,14 @@ function getAnswerNext(form, isNext) {//record answer, get next Q
     sessionStorage.setItem("Q"+questionNumber+" Answer", recAnswer);//save answer to sessionStorage
     if (recAnswer!=0 || isNext!=true){//if answer was submitted or previous question accessed, switch questions
         $("#questions").remove();
+        $("image").remove();
         if (isNext==true){//if next
                  sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))+1);
         }
         else{//if previous
                 sessionStorage.setItem("questionNumber", Number(sessionStorage.getItem("questionNumber"))-1);
         }
+        $("#numCorrect").after("<br/><div id='image' class='Question'><img src="+urlList[questionNumber]+"></div>")
         $("#numCorrect").after("<br/><div id='questions' class='Question'>"+generateQ()+"</div>");
         $(".Question").fadeIn();
     }
