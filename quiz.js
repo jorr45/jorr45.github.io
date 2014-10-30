@@ -35,7 +35,7 @@ jQuery(document).ready(function () {
                                 flickrJSON=data;
                                 var photo = flickrJSON.photos.photo[0];
                                 JSON2.urlList[i] = "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
-                                console.log(JSON.urlList[i]);
+                                console.log(JSON2.urlList[i]);
                         
                         });
               }
