@@ -42,16 +42,16 @@ jQuery(document).ready(function () {
                                 console.log(urlList[i]);
                         
                         })
-                        .done(function{
+                        .done(function(){
                                 console.log("done");
                         })
-                        .fail(function{
+                        .fail(function(){
                                 console.log("fail");
                         })
-                        .success(function{
+                        .success(function(){
                                 console.log("success");
                         })
-                        .always(function{
+                        .always(function(){
                                 console.log("always");
                         });
               }
