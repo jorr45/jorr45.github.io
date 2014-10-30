@@ -31,7 +31,7 @@ jQuery(document).ready(function () {
                 title=JSON2.title;
                 $("#numCorrect").text(title);
                 for (var i = 0; i<JSON2.questions.length; i++){
-                        flickrJSON=$.getJSON("https://api.flickr.com/services/rest/?\u0026method=flickr.photos.search\u0026api_key=929b35554adaeba34d52745f880a6a66\u0026sort=relevance\u0026format=json\u0026nojsoncallback=1\u0026per_page=1\u0026tags="+JSON2.questions[i].tag, function(data){
+                        flickrJSON=$.getJSON("https://api.flickr.com/services/rest/?\u0026method=flickr.photos.search\u0026api_key=929b35554adaeba34d52745f880a6a66\u0026sort=relevance\u0026format=json\u0026nojsoncallback=1\u0026per_page=1\u0026tag_mode=all\u0026tags="+JSON2.questions[i].tag, function(data){
                                 flickrJSON=data;
                                 var photo = flickrJSON.photos.photo[0];
                                 JSON2.urlList.push("https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg");
