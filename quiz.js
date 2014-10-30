@@ -5,7 +5,7 @@ var userName="";
 var password="";
 var JSON2;
 var flickrJSON;
-var urlList;
+var urlList= new Array();
 var users={};
 var scores=new Array();
 var questions=[{
