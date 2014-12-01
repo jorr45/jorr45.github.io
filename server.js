@@ -1,4 +1,5 @@
 var connect = require('connect');
+var http = require('http');
 var serveStatic = require('serve-static');
 var pg = require('pg');
 
