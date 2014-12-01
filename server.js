@@ -2,6 +2,7 @@ var connect = require('connect');
 var http = require('http');
 var serveStatic = require('serve-static');
 var pg = require('pg');
+var query;
 
 var conString = "postgres://postgres:1234@localhost/postgres";
 
@@ -32,7 +33,7 @@ var server = http.createServer(function(req, res) {
       if(handleError(err)) return;
 
       // get the total number of visits today (including the current visit)
-      client.query('SELECT COUNT(date) AS count FROM visit', function(err, result) {
+      query=client.query('SELECT COUNT(date) AS count FROM visit', function(err, result) {
 
         // handle an error from the query
         if(handleError(err)) return;
@@ -41,6 +42,9 @@ var server = http.createServer(function(req, res) {
         done();
         res.writeHead(200, {'content-type': 'text/plain'});
         res.end('You are visitor number ' + result.rows[0].count);
+      });
+      query.on("row", function(row){
+        console.log(query.rows[0].count);
       });
     });
   });
