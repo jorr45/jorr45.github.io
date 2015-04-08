@@ -1,12 +1,11 @@
 window.addEventListener("load",function() {
-var Q = window.Q = Quintus({audioSupported: [ 'wav','mp3','ogg' ]})
-        .include("Sprites, Scenes, Input, 2D, Anim, Touch, UI, TMX, Audio")
+var Q = window.Q = Quintus()
+        .include("Sprites, Scenes, Input, 2D, Touch, UI")
         // Maximize this game to whatever the size of the browser is
-        .setup({ maximize: true })
+        .setup("myGame")
         // And turn on default input controls and touch input (for UI)
-        .controls(true).touch()
-        // Enable sounds.
-        .enableSound();
+        .controls(true).touch();
+
 
 
 Q.NONE=0;
@@ -17,7 +16,7 @@ var turnTracking=0;
 var player="Blue";
 var placementTracking=0;
 
-Q.nextTurn = function(){
+Q.endTurn = function(){
 	if (player=="Blue"){
 		player="Red";
 	}
@@ -25,17 +24,19 @@ Q.nextTurn = function(){
 		player="Blue";
 		turnTracking++;
 	}
+	if (turnTracking==0) Q.nextPlacement;
 };
+
 Q.nextPlacement= function(){
 	var stage=Q.stage();
 	if (placementTracking<=0){
-		stage.insert(new Q.BF({ x: 700, y: 0 }));
+		//stage.insert(new Q.BF({ x: canvasX, y: canvasY }));
 	}
 	else if (placementTracking<=6){
-		stage.insert(new Q.BB({ x: 700, y: 0 }));
+		stage.insert(new Q.BB({ x: 100, y: 100 }));
 	}
 	else if (placementTracking<=14){
-		stage.insert(new Q.B9({ x: 700, y: 0 }));
+		stage.insert(new Q.B9({ x: 20, y: 40 }));
 	}
 	else if (placementTracking<=19){
 		stage.insert(new Q.B8({ x: 700, y: 0 }));
@@ -102,6 +103,7 @@ Q.nextPlacement= function(){
 	else if (placementTracking<=79){
 		stage.insert(new Q.RS({ x: 700, y: 0 }));
 	}
+	placementTracking++;
 
 };
 Q.Sprite.extend("Piece", {
@@ -160,7 +162,7 @@ Q.Sprite.extend("Piece", {
 	if (destroyThis||destroyOther) {Q.endTurn();}
      },
      place: function (x,y){
-	while (this.p.placing==true){ this.p.dragging=true;}
+	{ this.p.dragging=true;}
      },
      validateMove: function (x, y){
 	var validMove=true;
@@ -188,11 +190,11 @@ Q.Piece.extend("Blue", {
 	var validPlacement=true;
 	x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
 	y=Math.floor(y/(Q.height/10))*(Q.height/10)+(Q.height/20);
-	if (y>(Q.height/20)+(Q.height/10)*4 || y<0) {validPlacement=false;}
-	if (Q.stage().locate(x,y)!=null){ validPlacement=false;}
+	//if (y>(Q.height/20)+(Q.height/10)*4 || y<0) {validPlacement=false;}
+	//if (Q.stage().locate(x,y)!=null){ validPlacement=false;}
 	if (validPlacement) {this.p.x=x; this.p.y=y; this.p.placing=false; 
-		if (turnTracking<40){Q.nextPlacement();}
-		else {Q.endTurn();}
+		//if (placementTracking<40){Q.nextPlacement()}
+		//else {Q.endTurn();}
 	}
      },
      drag: function(touch) {
@@ -352,7 +354,7 @@ Q.Piece.extend("Red", {
 	if (y<Q.height-((Q.height/20)+(Q.height/10)*4) || y>Q.height) validPlacement=false;
 	if (Q.stage().locate(x,y)!=null) validPlacement=false;
 	if (validPlacement) {this.p.x=x; this.p.y=y; this.p.placing=false; 
-		if (turnTracking<40)Q.nextPlacement();
+		if (turnTracking<80)Q.nextPlacement();
 		else Q.endTurn();}
      },
      drag: function(touch) {
@@ -494,11 +496,13 @@ Q.Red.extend("RF", {
 
 
 Q.scene("level1",function(stage) {
-  Q.stageTMX("map.tmx",stage);
+    //stage.insert(new Q.TileLayer({ dataAsset: 'level.json', sheet: 'tiles' }));
 });
 
 
-Q.loadTMX("map.tmx, blue-rectangle.png, red_rectangle.jpg", function() {
+Q.load("blue-rectangle.png, red_rectangle.jpg, tile.gif", function() {
+    //Q.sheet("tiles", "tile.gif", {tilew: 32, tileh: 32});
     Q.stageScene("level1");
+    //while (placementTracking<16)Q.nextPlacement();
 });
 });
