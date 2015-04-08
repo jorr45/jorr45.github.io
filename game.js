@@ -25,9 +25,9 @@ Q.nextTurn = function(){
 		player="Blue";
 		turnTracking++;
 	}
-}
+};
 Q.nextPlacement= function(){
-	stage=Q.stage();
+	var stage=Q.stage();
 	if (placementTracking<=0){
 		stage.insert(new Q.BF({ x: 700, y: 0 }));
 	}
@@ -103,15 +103,16 @@ Q.nextPlacement= function(){
 		stage.insert(new Q.RS({ x: 700, y: 0 }));
 	}
 
-}
+};
 Q.Sprite.extend("Piece", {
   init: function(p,defaults) {
 
     this._super(p,Q._defaults(defaults||{},{
       collisionMask: Q.NONE,
-      originalX: p.x;
-      originalY: p.y;
-      placing: true;
+      originalX: p.x,
+      originalY: p.y,
+      placing: true,
+      value: null
     }));
 
     this.add("2d");
@@ -128,8 +129,8 @@ Q.Sprite.extend("Piece", {
 
      touchEnd: function(touch) {
        this.p.dragging = false;
-	if (placing==true) this.validatePlacement (this.p.x, this.p.y);
-	else this.validateMove (this.p.x, this.p.y);
+	if (this.p.placing==true) {this.validatePlacement (this.p.x, this.p.y);}
+	else {this.validateMove (this.p.x, this.p.y);}
      },
 
      collide: function(x, y){
@@ -139,37 +140,37 @@ Q.Sprite.extend("Piece", {
 	var collided=Q.stage().locate(x, y);
 	this.p.x=x; this.p.y=y;
 	if (collided==null){
-	  this.originalX=p.x;
-	  this.originalY=p.y;
+	  this.p.originalX=this.p.x;
+	  this.p.originalY=this.p.y;
 	  Q.endTurn();
 	}
 	if (collided.p.type!=this.p.type){
-		this.p.x=originalX; this.p.y=originalY;
+		this.p.x=this.p.originalX; this.p.y=this.p.originalY;
 	}
 	else if (this.p.value==8 && collided.p.value=='B' || this.p.value=='S' && collided.p.value=='1'){ destroyThis=false; destroyOther=true;}
-	else if (collided.p.value=='F') Q.victory();
+	//else if (collided.p.value=='F') Q.victory();
 	else if (collided.p.value<=this.p.value || collided.p.value=='B'){
-			destroyThis=true;
+			{destroyThis=true;}
 			
 	}
-	else if (collided.p.value>=this.p.value && collided.p.value!='B') destroyOther=true;
+	else if (collided.p.value>=this.p.value && collided.p.value!='B') {destroyOther=true;}
 
 	if (destroyOther) {collided.destroy(); this.p.x=x; this.p.y=y;}
 	if (destroyThis) {this.destroy();}
-	if (destroyThis||destroyOther) Q.endTurn();
+	if (destroyThis||destroyOther) {Q.endTurn();}
      },
      place: function (x,y){
-	while (placing==true) this.p.dragging=true;
+	while (this.p.placing==true){ this.p.dragging=true;}
      },
      validateMove: function (x, y){
 	var validMove=true;
 	x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
 	y=Math.floor(y/(Q.height/10))*(Q.height/10)+(Q.height/20);
-	if (x!=originalX && y!=originalY) validMove=false;
-	if (Math.abs(x-originalX)>=33 || x-originalX==0) validMove=false;
-	if (Math.abs(y-originalY)>=33 || x-originalX==0) validMove=false;
-	if (validMove) this.collide(x,y);
-	else{this.p.x=originalX; this.p.y=originalY;}
+	if (x!=this.p.originalX && y!=this.p.originalY){ validMove=false;}
+	if (Math.abs(x-this.p.originalX)>=33 || x-this.p.originalX==0) {validMove=false;}
+	if (Math.abs(y-this.p.originalY)>=33 || x-this.p.originalX==0){ validMove=false;}
+	if (validMove) {this.collide(x,y);}
+	else{this.p.x=this.p.originalX; this.p.y=this.p.originalY;}
      }
    
 });
@@ -179,22 +180,25 @@ Q.Piece.extend("Blue", {
 
     this._super(p,{
       asset: "blue-rectangle.png",
-      type: Q.BLUE_PIECE,
-    }));
+      type: Q.BLUE_PIECE
+    });
 	},
 
      validatePlacement: function(x, y){
 	var validPlacement=true;
 	x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
 	y=Math.floor(y/(Q.height/10))*(Q.height/10)+(Q.height/20);
-	if (y>(Q.height/20)+(Q.height/10)*4 || y<0) validPlacement=false;
-	if (Q.stage().locate(x,y)!=null) validPlacement=false;
-	if (validPlacement) {this.p.x=x; this.p.y=y; placing=false; 
-		if (turnTracking<40)Q.nextPlacement();
-		else Q.endTurn();}
+	if (y>(Q.height/20)+(Q.height/10)*4 || y<0) {validPlacement=false;}
+	if (Q.stage().locate(x,y)!=null){ validPlacement=false;}
+	if (validPlacement) {this.p.x=x; this.p.y=y; this.p.placing=false; 
+		if (turnTracking<40){Q.nextPlacement();}
+		else {Q.endTurn();}
+	}
      },
      drag: function(touch) {
-       if (player=="Blue") this._super(touch);
+	if (player=="Blue"){
+       this._super();
+	}
      }
 });
 
@@ -209,7 +213,7 @@ Q.Blue.extend("B9", {
     touchEnd: function(touch) {
 	this.p.dragging = false;
 	this.validateMove(this.p.x, this.p.y);
-    }
+    },
     validateMove: function(x, y){
 	var invalidMove=false;
 	x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
@@ -224,22 +228,22 @@ Q.Blue.extend("B9", {
 	if (y>this.p.originalY) ySign=1; else ySign=-1;
 
 	if (!invalidMove){for (var i=(Q.width/10); i<xSign*(x-this.p.originalX); i=i+(Q.width/10)*xSign){
-	  if (Q.stage().locate(originalX+i, y) != null && this.p.originalX+i!=x){
+	  if (Q.stage().locate(this.p.originalX+i, y) != null && this.p.originalX+i!=x){
 		invalidMove=true;
 		break;
 	  }
 	}}
 	if (!invalidMove){for (var i=(Q.height/10); i<ySign*(y-this.p.originalY); i=i+(Q.height/10)*ySign){
-	  if (Q.stage().locate(x, originalY+i) != null && this.p.originalY+i!=y){
+	  if (Q.stage().locate(x, this.p.originalY+i) != null && this.p.originalY+i!=y){
 		invalidMove=true;
 		break;
 	  }
 	}}
 
 	if (!invalidMove) this.collide(x,y);
-	else{this.p.x=originalX; this.p.y=originalY;}
+	else{this.p.x=this.p.originalX; this.p.y=this.p.originalY;}
     }
-  }
+  
 
 });
 
@@ -316,7 +320,7 @@ Q.Blue.extend("BB", {
     });
   },
   drag: function(touch) {
-       if (placing==true) this._super(touch); 
+       if (this.p.placing==true) this._super(touch); 
   }
 });
 Q.Blue.extend("BF", {
@@ -326,7 +330,7 @@ Q.Blue.extend("BF", {
     });
   },
   drag: function(touch) {
-       if (placing==true) this._super(touch); 
+       if (this.p.placing==true) this._super(touch); 
   }
 });
 
@@ -336,9 +340,9 @@ Q.Piece.extend("Red", {
   init: function(p) {
 
     this._super(p,{
-      asset: "red rectangle.jpg",
+      asset: "red_rectangle.jpg",
       type: Q.RED_PIECE,
-    }));
+    });
 	},
 
      validatePlacement: function(x, y){
@@ -347,7 +351,7 @@ Q.Piece.extend("Red", {
 	y=Math.floor(y/(Q.height/10))*(Q.height/10)+(Q.height/20);
 	if (y<Q.height-((Q.height/20)+(Q.height/10)*4) || y>Q.height) validPlacement=false;
 	if (Q.stage().locate(x,y)!=null) validPlacement=false;
-	if (validPlacement) {this.p.x=x; this.p.y=y; placing=false; 
+	if (validPlacement) {this.p.x=x; this.p.y=y; this.p.placing=false; 
 		if (turnTracking<40)Q.nextPlacement();
 		else Q.endTurn();}
      },
@@ -367,7 +371,7 @@ Q.Red.extend("R9", {
     touchEnd: function(touch) {
 	this.p.dragging = false;
 	this.validateMove(this.p.x, this.p.y);
-    }
+    },
     validateMove: function(x, y){
 	var invalidMove=false;
 	x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
@@ -397,7 +401,7 @@ Q.Red.extend("R9", {
 	if (!invalidMove) this.collide(x,y);
 	else{this.p.x=originalX; this.p.y=originalY;}
     }
-  }
+  
 
 });
 
@@ -474,7 +478,7 @@ Q.Red.extend("RB", {
     });
   },
   drag: function(touch) {
-       if (placing==true) this._super(touch); 
+       if (this.p.placing==true) this._super(touch); 
   }
 });
 Q.Red.extend("RF", {
@@ -484,7 +488,7 @@ Q.Red.extend("RF", {
     });
   },
   drag: function(touch) {
-       if (placing==true) this._super(touch); 
+       if (this.p.placing==true) this._super(touch); 
   }
 });
 
@@ -494,15 +498,7 @@ Q.scene("level1",function(stage) {
 });
 
 
-Q.loadTMX("map.tmx, blue-rectangle.png, red rectangle.jpg", function() {
+Q.loadTMX("map.tmx, blue-rectangle.png, red_rectangle.jpg", function() {
     Q.stageScene("level1");
-  
-}, {
-  progressCallback: function(loaded,total) {
-    var element = document.getElementById("loading_progress");
-    element.style.width = Math.floor(loaded/total*100) + "%";
-    if (loaded == total) {
-      document.getElementById("loading").remove();
-    }
-  }
+});
 });
