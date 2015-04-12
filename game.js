@@ -566,15 +566,28 @@ Q.Red.extend("RF", {
 
 
 Q.scene("level1",function(stage) {
-  Q.stageTMX("map.tmx",stage);
-   //stage.insert(new Q.TileLayer({ dataAsset: 'level.json', sheet: 'tiles' }));
-});
+  stage.insert(new Q.TileLayer({
+  tileW: 420,  // Default tile width
+  tileH: 420,  // Default tile height
+  blockTileW: 420,  // Default pre-render size
+  blockTileH: 420,
+  type: Q.SPRITE_DEFAULT, // Default type (for collisions)
+  dataAsset: "sprites.json",
+  sheet: "background"
+}));
+    });
     
 
 
 
-Q.loadTMX("map.tmx, level.json, Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
+Q.load("Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
     //Q.sheet("tiles", "tile.gif", {tilew: 32, tileh: 32});
+    Q.sheet("background",
+        "Classic_board.jpg",
+        {
+          tilew: 420,  // Each tile is 40 pixels wide
+          tileh: 420,  // and 40 pixels tall
+         });
     Q.stageScene("level1");
  
     //while (placementTracking<16)Q.nextPlacement();
