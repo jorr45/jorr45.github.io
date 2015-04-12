@@ -1,20 +1,19 @@
-window.addEventListener("load",function() {
+window.addEventListener("load",function(e) {
 var Q = window.Q = Quintus()
-        .include("Sprites, Scenes, Input, 2D, Touch, UI")
-        // Maximize this game to whatever the size of the browser is
-        .setup("myGame")
-        // And turn on default input controls and touch input (for UI)
-        .controls(true).touch();
-
-
-
+        .include("Sprites, Scenes, Input, 2D, Touch, UI, TMX");
 Q.NONE=0;
+Q.SPRITE_ALL= 0xFFFF;
 Q.SPRITE_BLUE_PIECE = 1;
-Q.SPRITE_BLUE_PIECE = 2;
+Q.SPRITE_RED_PIECE = 2;
+Q.setup({width: 320, height: 420}).touch(Q.SPRITE_ALL).controls(true);
+
+
+
 Q.gravityX=0; Q.gravityY=0;
 var turnTracking=0;
 var player="Blue";
 var placementTracking=0;
+var labels=[];
 
 Q.endTurn = function(){
 	if (player=="Blue"){
@@ -28,83 +27,114 @@ Q.endTurn = function(){
 };
 
 Q.nextPlacement= function(){
-	var stage=Q.stage();
+	var stage=Q.stage(0);
+	var newOne=[];
+	while (placementTracking < 40){
+	var xcoord=Q.width/20+(Q.width/10)*(placementTracking%10);
+	var ycoord=Q.height/20+(Q.height/10)*Math.floor(placementTracking/10);
+        console.log(ycoord);
+        
+	
 	if (placementTracking<=0){
-		//stage.insert(new Q.BF({ x: canvasX, y: canvasY }));
+		newOne[placementTracking]=stage.insert(new Q.BF({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=6){
-		stage.insert(new Q.BB({ x: 100, y: 100 }));
+		newOne[placementTracking]=stage.insert(new Q.BB({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=14){
-		stage.insert(new Q.B9({ x: 20, y: 40 }));
+		newOne[placementTracking]=stage.insert(new Q.B9({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=19){
-		stage.insert(new Q.B8({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.B8({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=23){
-		stage.insert(new Q.B7({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.B7({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=27){
-		stage.insert(new Q.B6({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.B6({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=31){
-		stage.insert(new Q.B5({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.B5({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=34){
-		stage.insert(new Q.B4({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.B4({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=36){
-		stage.insert(new Q.B3({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.B3({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=37){
-		stage.insert(new Q.B2({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.B2({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=38){
-		stage.insert(new Q.B1({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.B1({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=39){
-		stage.insert(new Q.BS({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.BS({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
+        if (player=="Blue"){
+	labels[placementTracking]=Q.stage(0).insert(new Q.UI.Button({
+        label: newOne[placementTracking].p.value,
+        color: "white",
+      x: xcoord,
+      y: ycoord
+    }, function() {}));
+        }
+	placementTracking++;
+	
+	}
+while (placementTracking >= 40 && placementTracking<80){
+	var xcoord=Q.width/20+(Q.width/10)*(placementTracking%10);
+	var ycoord=Q.height-(Q.height/20+ (Q.height/10) *Math.floor((placementTracking-40)/10));
+    console.log(ycoord);
 
-
-	else if (placementTracking<=40){
-		stage.insert(new Q.RF({ x: 700, y: 0 }));
+	if (placementTracking<=40){
+		newOne[placementTracking]=stage.insert(new Q.RF({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=46){
-		stage.insert(new Q.RB({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.RB({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=54){
-		stage.insert(new Q.R9({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R9({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=59){
-		stage.insert(new Q.R8({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R8({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=63){
-		stage.insert(new Q.R7({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R7({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=67){
-		stage.insert(new Q.R6({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R6({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=71){
-		stage.insert(new Q.R5({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R5({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=74){
-		stage.insert(new Q.R4({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R4({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=76){
-		stage.insert(new Q.R3({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R3({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=77){
-		stage.insert(new Q.R2({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R2({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=78){
-		stage.insert(new Q.R1({ x: 700, y: 0 }));
+		newOne[placementTracking]=stage.insert(new Q.R1({ x: xcoord, y: ycoord, placement: placementTracking }));
 	}
 	else if (placementTracking<=79){
-		stage.insert(new Q.RS({ x: 700, y: 0 }));
-	}
-	placementTracking++;
-
+		newOne[placementTracking]=stage.insert(new Q.RS({ x: xcoord, y: ycoord, placement: placementTracking }));
+	} 
+    if (player=="Red"){
+	labels[placementTracking]=Q.stage(0).insert(new Q.UI.Button({
+      label: newOne[placementTracking].p.value,
+        
+      x: xcoord,
+      y: ycoord
+    }, function() {}));
+    }
+	placementTracking++;    
+}
+	
+/////////////////PIECE//////////////////
 };
 Q.Sprite.extend("Piece", {
   init: function(p,defaults) {
@@ -113,8 +143,7 @@ Q.Sprite.extend("Piece", {
       collisionMask: Q.NONE,
       originalX: p.x,
       originalY: p.y,
-      placing: true,
-      value: null
+      value: 0
     }));
 
     this.add("2d");
@@ -127,81 +156,122 @@ Q.Sprite.extend("Piece", {
        this.p.dragging = true;
        this.p.x = touch.origX + touch.dx;
        this.p.y = touch.origY + touch.dy;
+        labels[this.p.placement].destroy();
+        labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
+        label: this.p.value,
+        color: "white",
+      x: this.p.x,
+      y: this.p.y
+    }, function() {}));
      },
 
      touchEnd: function(touch) {
-       this.p.dragging = false;
-	if (this.p.placing==true) {this.validatePlacement (this.p.x, this.p.y);}
-	else {this.validateMove (this.p.x, this.p.y);}
+         this.p.dragging = false;
+         this.validateMove (this.p.x, this.p.y);
+         this.p.originalX=this.p.x; this.p.originalY=this.p.y;
+         labels[this.p.placement].destroy();
+            labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
+            label: this.p.value,
+            color: "white",
+            x: this.p.x,
+            y: this.p.y
+        }, function() {}));
      },
 
      collide: function(x, y){
-	this.p.x=1000; this.p.y=1000;
-	var destroyThis=false;
-	var destroyOther=false;
-	var collided=Q.stage().locate(x, y);
-	this.p.x=x; this.p.y=y;
-	if (collided==null){
-	  this.p.originalX=this.p.x;
-	  this.p.originalY=this.p.y;
-	  Q.endTurn();
-	}
-	if (collided.p.type!=this.p.type){
-		this.p.x=this.p.originalX; this.p.y=this.p.originalY;
-	}
-	else if (this.p.value==8 && collided.p.value=='B' || this.p.value=='S' && collided.p.value=='1'){ destroyThis=false; destroyOther=true;}
-	//else if (collided.p.value=='F') Q.victory();
-	else if (collided.p.value<=this.p.value || collided.p.value=='B'){
-			{destroyThis=true;}
-			
-	}
-	else if (collided.p.value>=this.p.value && collided.p.value!='B') {destroyOther=true;}
+        var destroyThis=false;
+        var destroyOther=false;
+         var collided;
+         if (player=="Blue"){
+            collided=Q.stage(0).locate(x, y, Q.SPRITE_RED_PIECE);
+         }
+         else{
+           collided=Q.stage(0).locate(x, y, Q.SPRITE_BLUE_PIECE);  
+         }
+        this.p.x=x; this.p.y=y;
+        if (!collided){
+          Q.endTurn();
+        }
+        else if (collided.p.type==this.p.type){
+            this.p.x=this.p.originalX; this.p.y=this.p.originalY;
+        }
+        else if (this.p.value==8 && collided.p.value=='B' || this.p.value=='S' && collided.p.value=='1'){ destroyThis=false; destroyOther=true;}
+        //else if (collided.p.value=='F') Q.victory();
+        else if (collided.p.value<=this.p.value || collided.p.value=='B'){
+                {destroyThis=true;}
 
-	if (destroyOther) {collided.destroy(); this.p.x=x; this.p.y=y;}
-	if (destroyThis) {this.destroy();}
-	if (destroyThis||destroyOther) {Q.endTurn();}
+        }
+        else if (collided.p.value>=this.p.value && collided.p.value!='B' || collided.p.value) {destroyOther=true;}
+
+        if (destroyOther) {collided.destroy(); this.p.x=x; this.p.y=y;}
+        if (destroyThis) {this.destroy();}
+        if (destroyThis||destroyOther) {Q.endTurn();}
      },
-     place: function (x,y){
-	{ this.p.dragging=true;}
-     },
+    
      validateMove: function (x, y){
-	var validMove=true;
-	x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
-	y=Math.floor(y/(Q.height/10))*(Q.height/10)+(Q.height/20);
-	if (x!=this.p.originalX && y!=this.p.originalY){ validMove=false;}
-	if (Math.abs(x-this.p.originalX)>=33 || x-this.p.originalX==0) {validMove=false;}
-	if (Math.abs(y-this.p.originalY)>=33 || x-this.p.originalX==0){ validMove=false;}
-	if (validMove) {this.collide(x,y);}
-	else{this.p.x=this.p.originalX; this.p.y=this.p.originalY;}
-     }
+        var validMove=true;
+        x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
+        y=Math.floor(y/(Q.height/10))*(Q.height/10)+(Q.height/20);
+        //console.log("y: "+y+"; originaly: "+this.p.originalY);
+        if (x!=this.p.originalX && y!=this.p.originalY){ validMove=false;}
+        if (x==this.p.originalX && y==this.p.originalY){ validMove=false;}
+        if (Math.abs(x-this.p.originalX)>Q.width/10) {validMove=false;}
+        if (Math.abs(y-this.p.originalY)>Q.height/10){ validMove=false;}
+        if (validMove) {this.collide(x,y); }
+        else{this.p.x=this.p.originalX; this.p.y=this.p.originalY;}
+     },
+	step: function(dt) {
+       if(this.p.over) {
+         this.p.scale = 1.2;
+       } else {
+         this.p.scale = 1.;
+       }
+	},
+    getValue: function(){
+        return this.p.value;
+    }
    
 });
 
 Q.Piece.extend("Blue", {
-  init: function(p) {
+  init: function(p, defaults) {
 
-    this._super(p,{
-      asset: "blue-rectangle.png",
-      type: Q.BLUE_PIECE
-    });
-	},
+    this._super(p,Q._defaults(defaults||{},{
+        asset: "blue-rectangle.png",
+        type: Q.SPRITE_BLUE_PIECE
+    }));
+},
 
      validatePlacement: function(x, y){
 	var validPlacement=true;
 	x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
 	y=Math.floor(y/(Q.height/10))*(Q.height/10)+(Q.height/20);
 	//if (y>(Q.height/20)+(Q.height/10)*4 || y<0) {validPlacement=false;}
-	//if (Q.stage().locate(x,y)!=null){ validPlacement=false;}
+	//if (Q.stage(0).locate(x,y)!=null){ validPlacement=false;}
 	if (validPlacement) {this.p.x=x; this.p.y=y; this.p.placing=false; 
 		//if (placementTracking<40){Q.nextPlacement()}
 		//else {Q.endTurn();}
 	}
      },
      drag: function(touch) {
-	if (player=="Blue"){
-       this._super();
-	}
+        if (player=="Blue"){
+           this._super(touch);
+        }
+     },
+    touchEnd: function(touch) {
+        if (player=="Blue"){
+           this.p.dragging = false;
+           this.validateMove (this.p.x, this.p.y);
+           labels[this.p.placement].destroy();
+           labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
+                label: this.p.value,
+                color: "white",
+                x: this.p.x,
+                y: this.p.y
+            }, function() {}));
+        }
      }
+
 });
 
 Q.Blue.extend("B9", {
@@ -230,13 +300,13 @@ Q.Blue.extend("B9", {
 	if (y>this.p.originalY) ySign=1; else ySign=-1;
 
 	if (!invalidMove){for (var i=(Q.width/10); i<xSign*(x-this.p.originalX); i=i+(Q.width/10)*xSign){
-	  if (Q.stage().locate(this.p.originalX+i, y) != null && this.p.originalX+i!=x){
+	  if (Q.stage(0).locate(this.p.originalX+i, y) != null && this.p.originalX+i!=x){
 		invalidMove=true;
 		break;
 	  }
 	}}
 	if (!invalidMove){for (var i=(Q.height/10); i<ySign*(y-this.p.originalY); i=i+(Q.height/10)*ySign){
-	  if (Q.stage().locate(x, this.p.originalY+i) != null && this.p.originalY+i!=y){
+	  if (Q.stage(0).locate(x, this.p.originalY+i) != null && this.p.originalY+i!=y){
 		invalidMove=true;
 		break;
 	  }
@@ -328,7 +398,7 @@ Q.Blue.extend("BB", {
 Q.Blue.extend("BF", {
   init: function(p) {
     this._super(p,{
-      value: 'F'
+        value: 'F'
     });
   },
   drag: function(touch) {
@@ -343,7 +413,7 @@ Q.Piece.extend("Red", {
 
     this._super(p,{
       asset: "red_rectangle.jpg",
-      type: Q.RED_PIECE,
+      type: Q.SPRITE_RED_PIECE,
     });
 	},
 
@@ -352,7 +422,7 @@ Q.Piece.extend("Red", {
 	x=Math.floor(x/(Q.width/10))*(Q.width/10)+(Q.width/20);
 	y=Math.floor(y/(Q.height/10))*(Q.height/10)+(Q.height/20);
 	if (y<Q.height-((Q.height/20)+(Q.height/10)*4) || y>Q.height) validPlacement=false;
-	if (Q.stage().locate(x,y)!=null) validPlacement=false;
+	if (Q.stage(0).locate(x,y)!=null) validPlacement=false;
 	if (validPlacement) {this.p.x=x; this.p.y=y; this.p.placing=false; 
 		if (turnTracking<80)Q.nextPlacement();
 		else Q.endTurn();}
@@ -388,13 +458,13 @@ Q.Red.extend("R9", {
 	if (y>this.p.originalY) ySign=1; else ySign=-1;
 
 	if (!invalidMove){for (var i=(Q.width/10); i<xSign*(x-this.p.originalX); i=i+(Q.width/10)*xSign){
-	  if (Q.stage().locate(originalX+i, y) != null && this.p.originalX+i!=x){
+	  if (Q.stage(0).locate(originalX+i, y) != null && this.p.originalX+i!=x){
 		invalidMove=true;
 		break;
 	  }
 	}}
 	if (!invalidMove){for (var i=(Q.height/10); i<ySign*(y-this.p.originalY); i=i+(Q.height/10)*ySign){
-	  if (Q.stage().locate(x, originalY+i) != null && this.p.originalY+i!=y){
+	  if (Q.stage(0).locate(x, originalY+i) != null && this.p.originalY+i!=y){
 		invalidMove=true;
 		break;
 	  }
@@ -495,14 +565,45 @@ Q.Red.extend("RF", {
 });
 
 
-Q.scene("level1",function(stage) {
-    //stage.insert(new Q.TileLayer({ dataAsset: 'level.json', sheet: 'tiles' }));
+Q.scene("level1"",function(stage) {
+  Q.stageTMX("level1.tmx",stage);
+   //stage.insert(new Q.TileLayer({ dataAsset: 'level.json', sheet: 'tiles' }));
 });
+    
 
 
-Q.load("blue-rectangle.png, red_rectangle.jpg, tile.gif", function() {
+
+Q.loadTMX("map.tmx, level.json, Classic_board.jpg, tile.gif, blue-rectangle.png, red_rectangle.jpg", function() {
     //Q.sheet("tiles", "tile.gif", {tilew: 32, tileh: 32});
     Q.stageScene("level1");
+ 
     //while (placementTracking<16)Q.nextPlacement();
+	Q.nextPlacement();
 });
+
+
+  
+  Q.el.addEventListener('mousemove',function(e) {
+      var currentObj = null;
+    var x = e.offsetX || e.layerX,
+        y = e.offsetY || e.layerY,
+        stage = Q.stage(0);
+
+    // Use the helper methods from the Input Module on Q to
+    // translate from canvas to stage
+    var stageX = Q.canvasToStageX(x, stage),
+        stageY = Q.canvasToStageY(y, stage);
+
+    // Find the first object at that position on the stage
+    var obj = stage.locate(stageX,stageY);
+
+    
+    // Set a `hit` property so the step method for the 
+    // sprite can handle scale appropriately
+    if(currentObj) { currentObj.p.over = false; }
+    if(obj) {
+      currentObj = obj;
+      obj.p.over = true;
+    }
+  });
 });
