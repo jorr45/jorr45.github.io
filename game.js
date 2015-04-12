@@ -169,13 +169,7 @@ Q.Sprite.extend("Piece", {
          this.p.dragging = false;
          this.validateMove (this.p.x, this.p.y);
          this.p.originalX=this.p.x; this.p.originalY=this.p.y;
-         labels[this.p.placement].destroy();
-            labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
-            label: this.p.value,
-            color: "white",
-            x: this.p.x,
-            y: this.p.y
-        }, function() {}));
+         
      },
 
      collide: function(x, y){
@@ -191,9 +185,23 @@ Q.Sprite.extend("Piece", {
         this.p.x=x; this.p.y=y;
         if (!collided){
           Q.endTurn();
+            labels[this.p.placement].destroy();
+            labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
+            label: this.p.value,
+            color: "white",
+            x: this.p.x,
+            y: this.p.y
+        }, function() {}));
         }
         else if (collided.p.type==this.p.type){
             this.p.x=this.p.originalX; this.p.y=this.p.originalY;
+            labels[this.p.placement].destroy();
+            labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
+            label: this.p.value,
+            color: "white",
+            x: this.p.x,
+            y: this.p.y
+        }, function() {}));
         }
         else if (this.p.value==8 && collided.p.value=='B' || this.p.value=='S' && collided.p.value=='1'){ destroyThis=false; destroyOther=true;}
         //else if (collided.p.value=='F') Q.victory();
@@ -203,8 +211,17 @@ Q.Sprite.extend("Piece", {
         }
         else if (collided.p.value>=this.p.value && collided.p.value!='B' || collided.p.value) {destroyOther=true;}
 
-        if (destroyOther) {collided.destroy(); this.p.x=x; this.p.y=y;}
+        if (destroyOther) {collided.destroy(); this.p.x=x; this.p.y=y;
+                          labels[this.p.placement].destroy();
+            labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
+            label: this.p.value,
+            color: "white",
+            x: this.p.x,
+            y: this.p.y
+        }, function() {}));}
         if (destroyThis) {this.destroy();}
+         this.p.originalX=this.p.x;
+         this.p.originalY=this.p.y;
         if (destroyThis||destroyOther) {Q.endTurn();}
      },
     
@@ -218,7 +235,14 @@ Q.Sprite.extend("Piece", {
         if (Math.abs(x-this.p.originalX)>Q.width/10) {validMove=false;}
         if (Math.abs(y-this.p.originalY)>Q.height/10){ validMove=false;}
         if (validMove) {this.collide(x,y); }
-        else{this.p.x=this.p.originalX; this.p.y=this.p.originalY;}
+        else{this.p.x=this.p.originalX; this.p.y=this.p.originalY;
+            labels[this.p.placement].destroy();
+            labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
+            label: this.p.value,
+            color: "white",
+            x: this.p.x,
+            y: this.p.y
+        }, function() {}));}
      },
 	step: function(dt) {
        if(this.p.over) {
