@@ -571,7 +571,7 @@ Q.scene("level1",function(stage) {
   tileH: 420,  // Default tile height
   blockTileW: 420,  // Default pre-render size
   blockTileH: 420,
-  type: Q.SPRITE_DEFAULT, // Default type (for collisions)
+  type: Q.SPRITE_NONE, // Default type (for collisions)
   dataAsset: "level.json",
   sheet: "background"
 }));
