@@ -573,7 +573,7 @@ Q.scene("level1",function(stage) {
 
 
 
-Q.loadTMX("map.tmx, level.json, Classic_board.jpg, tile.gif, blue-rectangle.png, red_rectangle.jpg", function() {
+Q.loadTMX("map.tmx, level.json, Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
     //Q.sheet("tiles", "tile.gif", {tilew: 32, tileh: 32});
     Q.stageScene("level1");
  
