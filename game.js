@@ -123,14 +123,14 @@ while (placementTracking >= 40 && placementTracking<80){
 	else if (placementTracking<=79){
 		newOne[placementTracking]=stage.insert(new Q.RS({ x: xcoord, y: ycoord, placement: placementTracking }));
 	} 
-    if (player=="Red"){
+    //if (player=="Red"){
 	labels[placementTracking]=Q.stage(0).insert(new Q.UI.Button({
       label: newOne[placementTracking].p.value,
         
       x: xcoord,
       y: ycoord
     }, function() {}));
-    }
+    //}
 	placementTracking++;    
 }
 	
@@ -286,13 +286,6 @@ Q.Piece.extend("Blue", {
         if (player=="Blue"){
            this.p.dragging = false;
            this.validateMove (this.p.x, this.p.y);
-           labels[this.p.placement].destroy();
-           labels[this.p.placement]=Q.stage(0).insert(new Q.UI.Button({
-                label: this.p.value,
-                color: "white",
-                x: this.p.x,
-                y: this.p.y
-            }, function() {}));
         }
      }
 
