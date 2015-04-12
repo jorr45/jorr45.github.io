@@ -572,7 +572,7 @@ Q.scene("level1",function(stage) {
   blockTileW: 420,  // Default pre-render size
   blockTileH: 420,
   type: Q.SPRITE_DEFAULT, // Default type (for collisions)
-  dataAsset: "sprites.json",
+  dataAsset: "level.json",
   sheet: "background"
 }));
     });
@@ -580,7 +580,7 @@ Q.scene("level1",function(stage) {
 
 
 
-Q.load("Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
+Q.load("level.json, Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
     //Q.sheet("tiles", "tile.gif", {tilew: 32, tileh: 32});
     Q.sheet("background",
         "Classic_board.jpg",
