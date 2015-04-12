@@ -567,8 +567,8 @@ Q.Red.extend("RF", {
 
 Q.scene("level1",function(stage) {
   stage.insert(new Q.TileLayer({
-      tileW: 105,  // Default tile width
-      tileH: 105,  // Default tile height
+      tileW: 420,  // Default tile width
+      tileH: 420,  // Default tile height
       blockTileW: 105,  // Default pre-render size
       blockTileH: 105,
       type: Q.SPRITE_NONE, // Default type (for collisions)
@@ -585,8 +585,8 @@ Q.load("level.json, Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", f
     Q.sheet("background",
         "Classic_board.jpg",
         {
-          tilew: 420,  // Each tile is 40 pixels wide
-          tileh: 420,  // and 40 pixels tall
+          tilew: 105,  // Each tile is 40 pixels wide
+          tileh: 105,  // and 40 pixels tall
          });
     Q.stageScene("level1");
  
