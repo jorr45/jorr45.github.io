@@ -566,7 +566,7 @@ Q.Red.extend("RF", {
 
 
 Q.scene("level1",function(stage) {
-  Q.stageTMX("level1.tmx",stage);
+  Q.stageTMX("map.tmx",stage);
    //stage.insert(new Q.TileLayer({ dataAsset: 'level.json', sheet: 'tiles' }));
 });
     
