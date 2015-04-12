@@ -567,8 +567,8 @@ Q.Red.extend("RF", {
 
 Q.scene("level1",function(stage) {
   stage.insert(new Q.TileLayer({
-      tileW: 420,  // Default tile width
-      tileH: 420,  // Default tile height
+      tileW: 105,  // Default tile width
+      tileH: 105,  // Default tile height
       blockTileW: 105,  // Default pre-render size
       blockTileH: 105,
       type: Q.SPRITE_NONE, // Default type (for collisions)
