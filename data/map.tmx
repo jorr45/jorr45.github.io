@@ -3,9 +3,12 @@
  <tileset firstgid="1" name="Classic_board" tilewidth="29" tileheight="29">
   <image source="Classic_board.jpg" width="290" height="290"/>
  </tileset>
+ <tileset firstgid="101" name="Classic_board" tilewidth="290" tileheight="290">
+  <image source="Classic_board.jpg" width="290" height="290"/>
+ </tileset>
  <layer name="Tile Layer 1" width="10" height="10">
   <data encoding="base64" compression="zlib">
-   eJwNw4c2QgEAANBHIXuvSBq2CCEjK0RmCNnF/3+De8+5TUEQNBsybIutthmx3Q477bLbHnvts98BBx1y2BFHHXPcqBNOGnPKuNMmTJoy7YyzzjnvgosuuWzGFVfNuua6G+bcdMtt8+646577Fjzw0COPPbHoqWeeW/LCS8teee2Nt955b8UHH32y6rMvvlrzzXc//PTLb3+s2/DXP/8BfPYTuw==
+   eJxjYBgFuEDqANgJAC9UAGY=
   </data>
  </layer>
 </map>

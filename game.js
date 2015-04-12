@@ -5,7 +5,7 @@ Q.NONE=0;
 Q.SPRITE_ALL= 0xFFFF;
 Q.SPRITE_BLUE_PIECE = 1;
 Q.SPRITE_RED_PIECE = 2;
-Q.setup({width: 320, height: 420}).touch(Q.SPRITE_ALL).controls(true);
+Q.setup({width: 420, height: 420}).touch(Q.SPRITE_ALL).controls(true);
 
 
 
