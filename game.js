@@ -34,6 +34,8 @@ Q.nextPlacement= function(){
 	var ycoord=Q.height/20+(Q.height/10)*Math.floor(placementTracking/10);
         console.log(ycoord);
         
+        for (var i=0; i<)
+        
 	
 	if (placementTracking<=0){
 		newOne[placementTracking]=stage.insert(new Q.BF({ x: xcoord, y: ycoord, placement: placementTracking }));
@@ -597,7 +599,7 @@ Q.scene("level1",function(stage) {
 
 
 
-Q.load("level.json, Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
+Q.load("level.json, sprites.json, Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
     //Q.sheet("tiles", "tile.gif", {tilew: 32, tileh: 32});
     Q.sheet("background",
         "Classic_board.jpg",
