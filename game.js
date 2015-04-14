@@ -34,7 +34,7 @@ Q.nextPlacement= function(){
 	var ycoord=Q.height/20+(Q.height/10)*Math.floor(placementTracking/10);
         console.log(ycoord);
         
-        for (var i=0; i<)
+       // for (var i=0; i<)
         
 	
 	if (placementTracking<=0){
@@ -87,7 +87,6 @@ Q.nextPlacement= function(){
 while (placementTracking >= 40 && placementTracking<80){
 	var xcoord=Q.width/20+(Q.width/10)*(placementTracking%10);
 	var ycoord=Q.height-(Q.height/20+ (Q.height/10) *Math.floor((placementTracking-40)/10));
-    console.log(ycoord);
 
 	if (placementTracking<=40){
 		newOne[placementTracking]=stage.insert(new Q.RF({ x: xcoord, y: ycoord, placement: placementTracking }));
