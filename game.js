@@ -598,7 +598,7 @@ Q.scene("level1",function(stage) {
 
 
 
-Q.load("level.json, sprites.json, Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
+Q.load("Classic_board.jpg, blue-rectangle.png, red_rectangle.jpg", function() {
     //Q.sheet("tiles", "tile.gif", {tilew: 32, tileh: 32});
     Q.sheet("background",
         "Classic_board.jpg",
