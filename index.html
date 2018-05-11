@@ -42,7 +42,7 @@ ctx.lineTo(xloc-5, 190);
 ctx.lineTo(xloc+5, 190);
 ctx.closePath();
 percent = (x*85+15).toFixed(1);
-points = (220+d2.getMinutes()+d2.getHours()*6+d2.getDate()*4);
+points = (220+d2.getMinutes()+d2.getHours()*4+(d2.getDate()-10)*50);
 
 ctx.strokeText("Currently: " + percent+ "% chance of Snitchcock victory", 120, 260);
 ctx.strokeText("Predicted margin: " + points + " points", 120, 280);
