@@ -21,19 +21,74 @@
                   return ((t ^ t >>> 14) >>> 0) / 4294967296;
                 }
             }
-            
+
             function testResults (form) {
                 var TestVar = form.inputbox.value;
-                alert ("You typed: " + TestVar);
+                if (!TestVar){
+                  TestVar = "hello"
+                }
+                var seed = xmur3(TestVar);
+                var rand = mulberry32(seed());
+                var exclamations = ['Praise-the-Lord-Jesus-Christ-for-He',
+                                    'Blessed-be-Jehovah-for-He',
+                                    'Our-merciful-Father',
+                                    'By-His-divine-grace-He',
+                                    'Praise-the-Virgin-Mary-for-she',
+                                    'Lord-Jehovah-father-God-I-give-praise-to-thee-for-thou',
+                                    'Glory-be-to-the-Father-Son-and-Holy-Ghost-for-they',
+                                    'Hail-Mary-full-of-grace-for-she',
+                                    'I-although-only-possessing-faith-the-size-of-a-mustard-seed-hath-been-blessed-by-Jove-for-He',
+                                    'Yeet-me-lest-ye-be-yeeted-for-Jehova'
+                                  ]
+                var verbs = ['-hath-blessed-unto',
+                             '-hath-given-to',
+                             '-hath-bestowed-onto',
+                             '-doth-bringed-unto',
+                             '-hath-provided',
+                             '-hath-delivered-us-from-damnation-and-gave-to',
+                             '-hath-revealed-unto',
+                             '-doth-secureth-for',
+                             '-hath-endowed-unto',
+                             '-shall-deliver-unto'
+                            ]
+                var pronouns = ['-thee',
+                             '-us',
+                             '-me',
+                             '-our-flock',
+                             '-mine-kin',
+                             '-thy-mother',
+                             '-thy-flock',
+                             '-thine-kin',
+                             '-thine-children',
+                             '-thy-saints'
+                            ]
+                var punchlines = ['-an-everlasting-fresh-n-crackly-Juul®',
+                             '-a-craving-for-booty',
+                             '-some-scorching-hot-tea',
+                             '-Gucci®-slides',
+                             '-a-particularly-spicy-meme',
+                             '-tickets-to-the-Jonas-Brothers-Revival-Tour',
+                             '-a-perfect-match-on-CoStar-that-leads-to-an-astrologically-mindblowing-hook-up',
+                             '-the-passionate-roma nce-between-Bradley-Cooper-and-Lady-Gaga-in-A-Star-Is-Born',
+                             '-the-glory-of-Tam-Francis’-french-tuck',
+                             '-114-kids-and-a-role-as-contestant-on-the-new-season-of-The-Bachelorette'
+                            ]
+                var i = Math.floor(rand()*10);
+                var j = Math.floor(rand()*10);
+                var k = Math.floor(rand()*10);
+                var l = Math.floor(rand()*10);
+                result = exclamations[i] + verbs[j] + pronouns[k] + punchlines[l];
+                form.output.value = result;
             }
         </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.min.js'></script>
     </head>
     <body>
-        <FORM NAME="myform" ACTION="" METHOD="GET">Enter something in the box: <BR>
-        <INPUT TYPE="text" NAME="inputbox" VALUE="Name"><P>
+        <FORM NAME="myform" ACTION="" METHOD="GET">Enter your name to discover your Puritan identity: <BR>
+        <INPUT TYPE="text" NAME="inputbox" VALUE=""><P>
         <INPUT TYPE="button" NAME="button" Value="Click" onClick="testResults(this.form)">
+          <p>YOUR PURITAN NAME:</p>
+        <OUTPUT TYPE="text" NAME="output" VALUE=""></OUTPUT>
         </FORM>
     </body>
 </html>
