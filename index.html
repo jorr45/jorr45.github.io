@@ -2,60 +2,38 @@
 <html>
     <head>
         <title></title>
+        <script>
+            function xmur3(str) {
+                for(var i = 0, h = 1779033703 ^ str.length; i < str.length; i++)
+                    h = Math.imul(h ^ str.charCodeAt(i), 3432918353),
+                    h = h << 13 | h >>> 19;
+                return function() {
+                    h = Math.imul(h ^ h >>> 16, 2246822507);
+                    h = Math.imul(h ^ h >>> 13, 3266489909);
+                    return (h ^= h >>> 16) >>> 0;
+                }
+            }
+            function mulberry32(a) {
+                return function() {
+                  var t = a += 0x6D2B79F5;
+                  t = Math.imul(t ^ t >>> 15, t | 1);
+                  t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+                  return ((t ^ t >>> 14) >>> 0) / 4294967296;
+                }
+            }
+            
+            function testResults (form) {
+                var TestVar = form.inputbox.value;
+                alert ("You typed: " + TestVar);
+            }
+        </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.min.js'></script>
     </head>
     <body>
-        <style>
-  canvas { background-color:white; }
-</style>
-<center><canvas id="myCanvas" width="600" height="400" style="border:1px solid #d3d3d3;">
-Your browser does not support the HTML5 canvas tag.</canvas></center>
-
-<script>
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-var grd = ctx.createLinearGradient(0, 0, 350, 0);
-grd.addColorStop(0, "blue");
-grd.addColorStop(1, "red");
-
-// Fill with gradient
-ctx.fillStyle = grd;
-ctx.fillRect(125, 70, 350, 100);
-ctx.font = "30px Arial";
-ctx.strokeText("Likelihood of Snitchcock Victory", 85, 50);
-ctx.font = "16px Arial";
-ctx.strokeText("0%", 120, 210);
-ctx.font = "16px Arial";
-ctx.strokeText("100%", 460, 210);
-ctx.beginPath();
-var d0 = new Date(2018, 4, 10, 0, 0, 0, 0);
-var d1 = new Date(2018, 4, 13, 15, 30, 0, 0);
-var d2 = new Date();
-
-var x = (d2.getTime()-d0.getTime()) / (d1.getTime()-d0.getTime());
-//console.log(d2.getTime()-d0.getTime());
-var xloc = 175+300*x;
-
-ctx.moveTo(xloc, 175);
-ctx.lineTo(xloc-5, 190);
-ctx.lineTo(xloc+5, 190);
-ctx.closePath();
-percent = (x*85+15).toFixed(1);
-points = (220+d2.getMinutes()+d2.getHours()*4+(d2.getDate()-9)*50);
-
-ctx.strokeText("Currently: " + percent+ "% chance of Snitchcock victory", 120, 260);
-ctx.strokeText("Predicted margin: " + points + " points", 120, 280);
-ctx.font = "16px Arial";
-
-// the outline
-ctx.lineWidth = 2;
-ctx.strokeStyle = '#666666';
-ctx.stroke();
- 
-// the fill color
-ctx.fillStyle = "#FFCC00";
-ctx.fill();
-</script>
+        <FORM NAME="myform" ACTION="" METHOD="GET">Enter something in the box: <BR>
+        <INPUT TYPE="text" NAME="inputbox" VALUE="Name"><P>
+        <INPUT TYPE="button" NAME="button" Value="Click" onClick="testResults(this.form)">
+        </FORM>
     </body>
 </html>
