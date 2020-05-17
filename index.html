@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" /> <!-- reset css -->
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
 <style>
@@ -27,25 +26,25 @@ window.onload=function(){
         for (var i=0; i<6; i++){
             for (var j=0; j<4; j++){
                 baseimage = new Image();
-                if (i==4){
+                if (i==2){
                     baseimage.src = 'img/hair' + (j+1) + '.png';
                     baseimage.x_pos = 150;
                     baseimage.y_pos = 100 + (j%4)*125;
                     baseimage.class = 'hair';
                 }
-                else if (i==2){
+                else if (i==4){
                     baseimage.src = 'img/shirt' + (j+1) + '.png';
                     baseimage.x_pos = 150;
                     baseimage.y_pos = 20 + (j%4)*140;
                     baseimage.class = 'shirt';
                 }
-                else if (i==1){
+                else if (i==3){
                     baseimage.src = 'img/pants' + (j+1) + '.png';
                     baseimage.x_pos = 10 + j/2 * 160;
                     baseimage.y_pos = 20 + (j%2)*300;
                     baseimage.class = 'pants';
                 }
-                else if (i==3){
+                else if (i==1){
                     baseimage.src = 'img/shoe' + (j+1) + '.png';
                     baseimage.x_pos = 120;
                     baseimage.y_pos = 50 + (j%4)*145;
