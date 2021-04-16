@@ -1,306 +1,48 @@
 <!doctype html>
 <html>
-<head>
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-
-<style>
-    body{ background-color: ivory; }
-    #canvas{border:1px solid red;}
-</style>
-
-<script>
-
-
-window.onload=function(){
-    var num_images = 21;
-    var loaded = 0;
-    var images = [];
-    var classup = "shirt";
-
-    // get canvas related references
-    var canvas=document.getElementById("canvas");
-    var ctx=canvas.getContext("2d");
-    make_base();
-    function make_base()
-    {
-        for (var i=0; i<6; i++){
-            for (var j=0; j<4; j++){
-                baseimage = new Image();
-                if (i==2){
-                    baseimage.src = 'img/hair' + (j+1) + '.png';
-                    baseimage.x_pos = 150;
-                    baseimage.y_pos = 100 + (j%4)*125;
-                    baseimage.class = 'hair';
+    <head>
+        <title>PVP Stats Calculator</title>
+        <script>
+            function testResults (form) {
+                var TestVar1 = form.resist.value;
+                if (!TestVar1){
+                  TestVar1 = "NaN"
                 }
-                else if (i==4){
-                    baseimage.src = 'img/shirt' + (j+1) + '.png';
-                    baseimage.x_pos = 150;
-                    baseimage.y_pos = 20 + (j%4)*140;
-                    baseimage.class = 'shirt';
+                var TestVar2 = form.damage.value;
+                if (!TestVar2){
+                  TestVar2 = "NaN"
                 }
-                else if (i==3){
-                    baseimage.src = 'img/pants' + (j+1) + '.png';
-                    baseimage.x_pos = 10 + j/2 * 160;
-                    baseimage.y_pos = 20 + (j%2)*300;
-                    baseimage.class = 'pants';
+                var resist = parseInt(TestVar1);
+                if (resist > 50) {
+                    resist = 70 * (1 - Math.exp(-.0413664*resist + .815556));
                 }
-                else if (i==1){
-                    baseimage.src = 'img/shoe' + (j+1) + '.png';
-                    baseimage.x_pos = 120;
-                    baseimage.y_pos = 50 + (j%4)*145;
-                    baseimage.class = 'shoe';
-                }
-                else if (i==5){
-                    baseimage.src = 'img/other' + (j+1) + '.png';
-                    baseimage.x_pos = 150;
-                    baseimage.y_pos = 250 + (j%4)*125;
-                    baseimage.class = 'other';
-                }
-                else if (i==0){
-                    if (j==0){
-                        baseimage.src = 'img/tail.png';
-                        baseimage.x_pos = 150;
-                        baseimage.y_pos = 70 + (j%4)*125;
-                        baseimage.class = 'other';
-                    }
-                    else if (j==1){
-                        baseimage.src = 'img/body.png';
-                        baseimage.x_pos = 500;
-                        baseimage.y_pos = 50;
-                        baseimage.class = 'body';
-                    }
-                    else{ continue; }
+                if (resist < 0){
+                    resist = 0;
                 }
 
-                baseimage.isDragging = false;
-                baseimage.placed = false;
-                baseimage.default_xpos = baseimage.x_pos;
-                baseimage.default_ypos = baseimage.y_pos;
-                images.push(baseimage);
-                baseimage.onload = function(){
-                    loaded += 1;
-                    if (loaded == num_images){
-                        for (var i=0; i<num_images; i++){
-                            img = images[i];
-                            images[i].width = img.width/2.5;
-                            images[i].height = img.height/2.5;
-
-                        }
-                    }
-                    draw();
-
-                };
+                var dmg = parseInt(TestVar2);
+                if (dmg > 100) {
+                    dmg = 200 * (1 - Math.exp(-.00859*dmg + .16587));
+                }
+                if (dmg < 0){
+                    dmg = 0;
+                }
+                form.resoutput.value = Math.round(10*resist)/10.0;
+                form.dmgoutput.value = Math.round(10*dmg)/10.0;
             }
-        }
-        baseimage.src = 'img/other3.png';
-        baseimage.x_pos = -1000;
-        baseimage.y_pos = -1000;
-        baseimage.class = 'nothing';
-        images.push(baseimage);
-        baseimage.onload = function(){
-            loaded += 1;
-            if (loaded == num_images){
-                for (var i=0; i<num_images; i++){
-                    img = images[i];
-                    images[i].width = img.width/2.5;
-                    images[i].height = img.height/2.5;
-
-                }
-            }
-            draw();
-
-        };
-
-    }
-    var BB=canvas.getBoundingClientRect();
-    var offsetX=BB.left;
-    var offsetY=BB.top;
-    var WIDTH = canvas.width;
-    var HEIGHT = canvas.height;
-
-    // drag related variables
-    var dragok = false;
-    var startX;
-    var startY;
-
-    // an array of objects that define different rectangles
-    var rects=images;
-    // rects.push({x:75-15,y:50-15,width:30,height:30,fill:"#444444",isDragging:false});
-    // rects.push({x:75-25,y:50-25,width:30,height:30,fill:"#ff550d",isDragging:false});
-    // rects.push({x:75-35,y:50-35,width:30,height:30,fill:"#800080",isDragging:false});
-    // rects.push({x:75-45,y:50-45,width:30,height:30,fill:"#0c64e8",isDragging:false});
-
-    // listen for mouse events
-    canvas.onmousedown = myDown;
-    canvas.onmouseup = myUp;
-    canvas.onmousemove = myMove;
-
-    // call to draw the scene
-
-    // draw a single rect
-    function rect(x,y,w,h) {
-     ctx.beginPath();
-     ctx.rect(x,y,w,h);
-     ctx.closePath();
-     ctx.fill();
-    }
-
-    // clear the canvas
-    function clear() {
-       ctx.clearRect(0, 0, WIDTH, HEIGHT);
-    }
-
-    // redraw the scene
-    function draw() {
-        clear();
-        ctx.fillStyle = "#FAF7F8";
-        rect(0,0,WIDTH,HEIGHT);
-        ctx.beginPath();
-        ctx.moveTo(WIDTH/2,0);
-        ctx.lineTo(WIDTH/2, HEIGHT);
-        ctx.stroke();
-        for(var i=0;i<rects.length;i++){
-            var r=images[i];
-            if (is_showing(r)){
-                ctx.drawImage(r, r.x_pos, r.y_pos, r.width, r.height);
-            }
-        }
-        ctx.fillStyle = "red";
-        ctx.font = "20pt sans-serif";
-        ctx.fillText("HAIR", WIDTH/2+50 + 0*80, HEIGHT-50);
-        ctx.fillText("TOPS", WIDTH/2+50 + 1*80, HEIGHT-50);
-        ctx.fillText("BOTTOMS", WIDTH/2+50 + 2*80+10, HEIGHT-50);
-        ctx.fillText("SHOES", WIDTH/2+40 + 40, HEIGHT-10);
-        ctx.fillText("TRINKETS", WIDTH/2+40 + 2*80, HEIGHT-10);
-    }
-
-
-    // handle mousedown events
-    function myDown(e){
-
-        // tell the browser we're handling this mouse event
-        e.preventDefault();
-        e.stopPropagation();
-
-        // get the current mouse position
-        var mx=parseInt(e.clientX-offsetX);
-        var my=parseInt(e.clientY-offsetY);
-
-        // test each rect to see if mouse is inside
-        dragok=false;
-        for(var i=0;i<rects.length;i++){
-            var r=rects[i];
-            if(mx>r.x_pos && mx<r.x_pos+r.width && my>r.y_pos && my<r.y_pos+r.height
-            && is_showing(r) && r.class != "body"){
-                // if yes, set that rects isDragging=true
-                dragok=true;
-                r.isDragging=true;
-            }
-        }
-        if (mx >= WIDTH/2+45 && mx < WIDTH/2+50 + 75 && my >= HEIGHT-75 && my < HEIGHT-40){
-            console.log("hair");
-            classup = "hair";
-        }
-        else if (mx >= WIDTH/2+50 + 75 && mx < WIDTH/2+50 + 165 && my >= HEIGHT-75 && my < HEIGHT-40){
-            classup = "shirt";
-        }
-        else if (mx >= WIDTH/2+50 + 165 && mx < WIDTH-40 && my >= HEIGHT-75 && my < HEIGHT-40){
-            classup = "pants";
-        }
-        else if (mx >= WIDTH/2+35 && mx < WIDTH/2 + 195 && my >= HEIGHT-40){
-            classup = "shoe";
-        }
-        else if (mx >= WIDTH/2 + 195 && mx < WIDTH-50 && my >= HEIGHT-40){
-            classup = "other";
-        }
-        // save the current mouse position
-        startX=mx;
-        startY=my;
-    }
-
-    function is_showing(img){
-        if (img.class == "body" || img.class == classup || img.placed == true){
-            return true;
-        }
-        return false;
-    }
-
-    // handle mouseup events
-    function myUp(e){
-        // tell the browser we're handling this mouse event
-        e.preventDefault();
-        e.stopPropagation();
-
-        // clear all the dragging flags
-        for(var i=0;i<rects.length;i++){
-            if (rects[i].isDragging){
-                dragging = true;
-            }
-            if (rects[i].x_pos + rects[i].width/2 < WIDTH/2){
-                rects[i].x_pos = rects[i].default_xpos;
-                rects[i].y_pos = rects[i].default_ypos;
-                rects[i].placed = false;
-            }
-            else{
-                if (!rects[i].isDragging && rects[i].class == classup && classup != "other" && (dragok && rects[i].placed)) {
-                    rects[i].x_pos = rects[i].default_xpos;
-                    rects[i].y_pos = rects[i].default_ypos;
-                    rects[i].placed = false;
-                }
-                else{
-                    rects[i].placed = true;
-                }
-            }
-            rects[i].isDragging=false;
-        }
-        dragok = false;
-        draw();
-    }
-
-
-    // handle mouse moves
-    function myMove(e){
-        // if we're dragging anything...
-        if (dragok){
-
-          // tell the browser we're handling this mouse event
-          e.preventDefault();
-          e.stopPropagation();
-
-          // get the current mouse position
-          var mx=parseInt(e.clientX-offsetX);
-          var my=parseInt(e.clientY-offsetY);
-
-          // calculate the distance the mouse has moved
-          // since the last mousemove
-          var dx=mx-startX;
-          var dy=my-startY;
-
-          // move each rect that isDragging
-          // by the distance the mouse has moved
-          // since the last mousemove
-          for(var i=0;i<rects.length;i++){
-              var r=rects[i];
-              if(r.isDragging){
-                  r.x_pos+=dx;
-                  r.y_pos+=dy;
-              }
-          }
-
-          // redraw the scene with the new rect positions
-          draw();
-
-          // reset the starting mouse position for the next mousemove
-          startX=mx;
-          startY=my;
-
-        }
-    }
-
-}; // end $(function(){});
-</script>
-</head>
-<body>
-    <canvas id="canvas" width=800 height=600 style="padding: 0; margin: auto; display: block;"></canvas>
-</body>
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <FORM NAME="myform" ACTION="" METHOD="GET">Your resist stat: <BR>
+        <INPUT TYPE="text" NAME="resist" VALUE=""><P>
+            Your damage stat:<BR>
+        <INPUT TYPE="text" NAME="damage" VALUE=""><P>
+        <INPUT TYPE="submit" NAME="button" Value="Calculate My Stats!" onClick="event.preventDefault(); testResults(this.form)">
+          <p>Resist in PVP:</p>
+        <OUTPUT TYPE="text" NAME="resoutput" VALUE=""></OUTPUT>
+        <p>Damage in PVP:</p>
+      <OUTPUT TYPE="text" NAME="dmgoutput" VALUE=""></OUTPUT>
+        </FORM>
+    </body>
 </html>
