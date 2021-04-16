@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>PVP Stats Calculator</title>
+        <script>
+            function testResults (form) {
+                var TestVar1 = form.resist.value;
+                if (!TestVar1){
+                  TestVar1 = "NaN"
+                }
+                var TestVar2 = form.damage.value;
+                if (!TestVar2){
+                  TestVar2 = "NaN"
+                }
+                var resist = parseInt(TestVar1);
+                if (resist > 50) {
+                    resist = 70 * (1 - Math.exp(-.0413664*resist + .815556));
+                }
+                if (resist < 0){
+                    resist = 0;
+                }
+
+                var dmg = parseInt(TestVar2);
+                if (dmg > 100) {
+                    dmg = 200 * (1 - Math.exp(-.00859*dmg + .16587));
+                }
+                if (dmg < 0){
+                    dmg = 0;
+                }
+                form.resoutput.value = Math.round(10*resist)/10.0;
+                form.dmgoutput.value = Math.round(10*dmg)/10.0;
+            }
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1> WizPVP Stats Calculator </h1>
+        <h4> (As of test realm on 4/15/21) </h4>
+        <FORM NAME="myform" ACTION="" METHOD="GET">Your resist stat (%): <BR>
+        <INPUT TYPE="text" NAME="resist" VALUE=""><P>
+            Your damage stat (%):<BR>
+        <INPUT TYPE="text" NAME="damage" VALUE=""><P>
+        <INPUT TYPE="submit" NAME="button" Value="Calculate My Stats!" onClick="event.preventDefault(); testResults(this.form)">
+          <p>Resist in PVP:</p>
+        <OUTPUT TYPE="text" NAME="resoutput" VALUE=""></OUTPUT>
+        <p>Damage in PVP:</p>
+      <OUTPUT TYPE="text" NAME="dmgoutput" VALUE=""></OUTPUT>
+        </FORM>
+    </body>
+</html>
