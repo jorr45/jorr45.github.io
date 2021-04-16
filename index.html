@@ -3,92 +3,46 @@
     <head>
         <title></title>
         <script>
-            function xmur3(str) {
-                for(var i = 0, h = 1779033703 ^ str.length; i < str.length; i++)
-                    h = Math.imul(h ^ str.charCodeAt(i), 3432918353),
-                    h = h << 13 | h >>> 19;
-                return function() {
-                    h = Math.imul(h ^ h >>> 16, 2246822507);
-                    h = Math.imul(h ^ h >>> 13, 3266489909);
-                    return (h ^= h >>> 16) >>> 0;
-                }
-            }
-            function mulberry32(a) {
-                return function() {
-                  var t = a += 0x6D2B79F5;
-                  t = Math.imul(t ^ t >>> 15, t | 1);
-                  t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-                  return ((t ^ t >>> 14) >>> 0) / 4294967296;
-                }
-            }
-
             function testResults (form) {
-                var TestVar = form.inputbox.value;
-                if (!TestVar){
-                  TestVar = "hello"
+                var TestVar1 = form.resist.value;
+                if (!TestVar1){
+                  TestVar1 = "NaN"
                 }
-                var seed = xmur3(TestVar);
-                var rand = mulberry32(seed());
-                var exclamations = ['Praise-the-Lord-Jesus-Christ-for-He',
-                                    'Blessed-be-Jehovah-for-He',
-                                    'Our-merciful-Father',
-                                    'By-His-divine-grace-He',
-                                    'Praise-the-Virgin-Mary-for-she',
-                                    'Lord-Jehovah-father-God-I-give-praise-to-thee-for-thou',
-                                    'Glory-be-to-the-Father-Son-and-Holy-Ghost-for-they',
-                                    'Hail-Mary-full-of-grace-for-she',
-                                    'I-although-only-possessing-faith-the-size-of-a-mustard-seed-hath-been-blessed-by-Jove-for-He',
-                                    'Yeet-me-lest-ye-be-yeeted-for-Jehova'
-                                  ]
-                var verbs = ['-hath-blessed-unto',
-                             '-hath-given-to',
-                             '-hath-bestowed-onto',
-                             '-doth-bringed-unto',
-                             '-hath-provided',
-                             '-hath-delivered-us-from-damnation-and-gave-to',
-                             '-hath-revealed-unto',
-                             '-doth-secureth-for',
-                             '-hath-endowed-unto',
-                             '-shall-deliver-unto'
-                            ]
-                var pronouns = ['-thee',
-                             '-us',
-                             '-me',
-                             '-our-flock',
-                             '-mine-kin',
-                             '-thy-mother',
-                             '-thy-flock',
-                             '-thine-kin',
-                             '-thine-children',
-                             '-thy-saints'
-                            ]
-                var punchlines = ['-an-everlasting-fresh-n-crackly-Juul®',
-                             '-a-craving-for-booty',
-                             '-some-scorching-hot-tea',
-                             '-Gucci®-slides',
-                             '-a-particularly-spicy-meme',
-                             '-tickets-to-the-Jonas-Brothers-Revival-Tour',
-                             '-a-perfect-match-on-CoStar-that-leads-to-an-astrologically-mindblowing-hook-up',
-                             '-the-passionate-romance-between-Bradley-Cooper-and-Lady-Gaga-in-A-Star-Is-Born',
-                             '-the-glory-of-Tam-Francis’-french-tuck',
-                             '-114-kids-and-a-role-as-contestant-on-the-new-season-of-The-Bachelorette'
-                            ]
-                var i = Math.floor(rand()*10);
-                var j = Math.floor(rand()*10);
-                var k = Math.floor(rand()*10);
-                var l = Math.floor(rand()*10);
-                result = exclamations[i] + verbs[j] + pronouns[k] + punchlines[l];
-                form.output.value = result;
+                var TestVar2 = form.damage.value;
+                if (!TestVar2){
+                  TestVar2 = "NaN"
+                }
+                var resist = parseInt(TestVar1);
+                if (resist > 50) {
+                    resist = 70 * (1 - Math.exp(-.0413664*resist + .815556));
+                }
+                if (resist < 0){
+                    resist = 0;
+                }
+
+                var dmg = parseInt(TestVar2);
+                if (dmg > 100) {
+                    dmg = 200 * (1 - Math.exp(-.00859*dmg + .16587));
+                }
+                if (dmg < 0){
+                    dmg = 0;
+                }
+                form.resoutput.value = Math.round(10*resist)/10.0;
+                form.dmgoutput.value = Math.round(10*dmg)/10.0;
             }
         </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <FORM NAME="myform" ACTION="" METHOD="GET">Enter your name to discover your Puritan identity: <BR>
-        <INPUT TYPE="text" NAME="inputbox" VALUE=""><P>
-        <INPUT TYPE="button" NAME="button" Value="Click" onClick="testResults(this.form)">
-          <p>YOUR PURITAN NAME:</p>
-        <OUTPUT TYPE="text" NAME="output" VALUE=""></OUTPUT>
+        <FORM NAME="myform" ACTION="" METHOD="GET">Your resist stat: <BR>
+        <INPUT TYPE="text" NAME="resist" VALUE=""><P>
+            Your damage stat:<BR>
+        <INPUT TYPE="text" NAME="damage" VALUE=""><P>
+        <INPUT TYPE="submit" NAME="button" Value="Calculate My Stats!" onClick="event.preventDefault(); testResults(this.form)">
+          <p>Resist in PVP:</p>
+        <OUTPUT TYPE="text" NAME="resoutput" VALUE=""></OUTPUT>
+        <p>Damage in PVP:</p>
+      <OUTPUT TYPE="text" NAME="dmgoutput" VALUE=""></OUTPUT>
         </FORM>
     </body>
 </html>
